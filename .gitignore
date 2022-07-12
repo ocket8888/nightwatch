@@ -27,3 +27,8 @@ screenshot.png
 /logs
 html-report/
 test-results.xml
+
+# Editor files
+*.sublime-*
+*.code-workspace
+*.swp
