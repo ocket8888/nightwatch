@@ -26,7 +26,7 @@ describe('testRunnerSessionCreate', function() {
   });
 
   it('testRunner with session create error using webdriver', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/async')
     ];
@@ -61,7 +61,7 @@ describe('testRunnerSessionCreate', function() {
       })
     }, true);
 
-    let globals = {
+    const globals = {
       reporter(results) {
         const sep = path.sep;
         assert.strictEqual(results.errors, 2);
@@ -86,7 +86,7 @@ describe('testRunnerSessionCreate', function() {
   });
 
   it('testRunner with session create error using webdriver with --fail-fast argv', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/async')
     ];
@@ -121,7 +121,7 @@ describe('testRunnerSessionCreate', function() {
       })
     }, true);
 
-    let globals = {
+    const globals = {
       reporter(results) {
         assert.strictEqual(results.errors, 1);
         assert.strictEqual(Object.keys(results.modules).length, 1);
@@ -151,7 +151,7 @@ describe('testRunnerSessionCreate', function() {
   });
 
   it('testRunner with session create error using webdriver with enable_fail_fast setting', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/async')
     ];
@@ -186,7 +186,7 @@ describe('testRunnerSessionCreate', function() {
       })
     }, true);
 
-    let globals = {
+    const globals = {
       reporter(results) {
         assert.strictEqual(results.errors, 1);
         assert.strictEqual(Object.keys(results.modules).length, 1);
@@ -216,12 +216,12 @@ describe('testRunnerSessionCreate', function() {
   });
 
   it('testRunner with session ECONNREFUSED error using webdriver', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/async')
     ];
 
-    let globals = {
+    const globals = {
       reporter(results) {
         assert.strictEqual(results.errors, 2);
         assert.strictEqual(results.errmessages.length, 2);
@@ -255,11 +255,11 @@ describe('testRunnerSessionCreate', function() {
   });
 
   it('testRunner with not found server_path error', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/simple')
     ];
 
-    let globals = {
+    const globals = {
       reporter(results) {
         assert.strictEqual(results.errors, 1);
         assert.strictEqual(results.errmessages.length, 1);
@@ -294,11 +294,11 @@ describe('testRunnerSessionCreate', function() {
   });
 
   it('testRunner with incorrect server_path error', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/simple')
     ];
 
-    let globals = {
+    const globals = {
       reporter(results) {
         assert.strictEqual(results.errors, 1);
         assert.strictEqual(results.errmessages.length, 1);

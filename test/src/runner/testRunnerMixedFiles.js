@@ -35,8 +35,8 @@ describe('testRunnerMixedFiles', function() {
   this.timeout(5000);
 
   it('testRunWithoutDisablingTypescriptExplicitly', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/mixed-files');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/mixed-files');
+    const globals = {
       reporter({lastError, errmessages, modules}) {
         if (lastError) {
           throw lastError;
@@ -62,8 +62,8 @@ describe('testRunnerMixedFiles', function() {
   });
 
   it('testRunWithoutDisablingTypescriptImplicitly', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/mixed-files');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/mixed-files');
+    const globals = {
       reporter({lastError, errmessages, modules}) {
         if (lastError) {
           throw lastError;
@@ -87,8 +87,8 @@ describe('testRunnerMixedFiles', function() {
   });
 
   it('testRunSimpleDisablingTypescript', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/mixed-files');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/mixed-files');
+    const globals = {
       reporter({lastError, errmessages, modules}) {
         if (lastError) {
           throw lastError;

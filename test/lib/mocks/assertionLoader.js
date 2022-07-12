@@ -43,7 +43,7 @@ class AssertionLoaderMock {
    */
   loadAssertion(assertCallback, doneCallback) {
     const AssertionLoader = common.requireMock('api/_loaders/assertion.js', this.commandName, this.assertionModule, assertCallback, doneCallback);
-    let loader = new AssertionLoader(this.client);
+    const loader = new AssertionLoader(this.client);
 
     loader.loadModule()
       .setNamespace('assert')
@@ -65,7 +65,7 @@ class AssertionLoaderMock {
       }
     };
 
-    let loader = new AssertionLoaderMock(module, commandName, settings, mockReporter);
+    const loader = new AssertionLoaderMock(module, commandName, settings, mockReporter);
 
     loader.setAddToQueueFn(function({commandName, commandFn, context, args, stackTrace}) {
       commandFn.call(context, {args, stackTrace});

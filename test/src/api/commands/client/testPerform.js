@@ -11,7 +11,7 @@ describe('.perform()', function () {
   });
 
   it('browser.perform()', function (done) {
-    let client = this.client.api;
+    const client = this.client.api;
     this.client.api.perform(function () {
       assert.deepStrictEqual(client.options, this.options);
     });
@@ -41,7 +41,7 @@ describe('.perform()', function () {
   });
 
   it('browser.perform() with async callback with "browser" and "done" arguments', function (done) {
-    let localClient = this.client.api;
+    const localClient = this.client.api;
     this.client.api.perform(function (client, complete) {
       delete client.isES6Async;
       assert.deepEqual(localClient, client);

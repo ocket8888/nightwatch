@@ -1,12 +1,12 @@
-describe('Chrome DevTools Example', function() {
+describe("Chrome DevTools Example", function() {
 
-  it ('using CDP DOM Snapshot', async function(browser) {
-    await browser.navigateTo('https://nightwatchjs.org');
+	it ("using CDP DOM Snapshot", async function(browser) {
+		await browser.navigateTo("https://nightwatchjs.org");
 
-    const dom = await browser.chrome.sendAndGetDevToolsCommand('DOMSnapshot.captureSnapshot', {
-      computedStyles: []
-    });
+		const dom = await browser.chrome.sendAndGetDevToolsCommand("DOMSnapshot.captureSnapshot", {
+			computedStyles: []
+		});
 
-    browser.assert.deepStrictEqual(Object.keys(dom), ['documents', 'strings']);
-  });
+		browser.assert.deepStrictEqual(Object.keys(dom), ["documents", "strings"]);
+	});
 });

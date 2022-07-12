@@ -21,7 +21,7 @@ describe('expect.title', function() {
 
   it('to contain [PASSED]', function() {
     Nocks.title('hp vasq');
-    let expect = this.client.api.expect.title().to.contain('hp vasq');
+    const expect = this.client.api.expect.title().to.contain('hp vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.passed, true);
@@ -31,7 +31,7 @@ describe('expect.title', function() {
 
   it('toEqual [PASSED]', function() {
     Nocks.title('hp vasq');
-    let api = this.client.api.expect.title().to.toEqual('hp vasq');
+    const api = this.client.api.expect.title().to.toEqual('hp vasq');
 
     return this.client.start(function(err) {
       assert.ok('capabilities' in api);
@@ -46,7 +46,7 @@ describe('expect.title', function() {
 
     Nocks.title('hp vasq').title('hp vasq').title('hp vasq').title('hp vasq');
     
-    let api = this.client.api.expect.title().to.toEqual('vasq');
+    const api = this.client.api.expect.title().to.toEqual('vasq');
 
     return this.client.start(function(err) {
       assert.ok('capabilities' in api);
@@ -61,7 +61,7 @@ describe('expect.title', function() {
 
     Nocks.title('hp vasq');
 
-    let expect = this.client.api.expect.title().contains('hp vasq');
+    const expect = this.client.api.expect.title().contains('hp vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.waitForMs, 40);
@@ -76,7 +76,7 @@ describe('expect.title', function() {
 
     Nocks.title('hp vasq').title('hp vasq');
 
-    let expect = this.client.api.expect.title().to.equal('vasq');
+    const expect = this.client.api.expect.title().to.equal('vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.expected, 'equal \'vasq\'');
@@ -92,7 +92,7 @@ describe('expect.title', function() {
   it('to  NOT equal to [PASSED]', function() {
     Nocks.title('hp vasq');
 
-    let expect = this.client.api.expect.title().to.not.equal('xx');
+    const expect = this.client.api.expect.title().to.not.equal('xx');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.negate, true);
@@ -111,7 +111,7 @@ describe('expect.title', function() {
       .title('hp vasq')
       .title('hp vasq');
 
-    let expect = this.client.api.expect.title().to.not.equal('hp vasq');
+    const expect = this.client.api.expect.title().to.not.equal('hp vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.expected, 'not equal \'hp vasq\'');
@@ -128,7 +128,7 @@ describe('expect.title', function() {
     this.client.api.globals.waitForConditionPollInterval = 50;
     Nocks.title('');
 
-    let expect = this.client.api.expect.title().to.equal('hp vasq').before(40);
+    const expect = this.client.api.expect.title().to.equal('hp vasq').before(40);
     Nocks.title('hp vasq');
 
     return this.client.start(function() {
@@ -146,7 +146,7 @@ describe('expect.title', function() {
       .title('xx')
       .title('xx');
 
-    let expect = this.client.api.expect.title().to.equal('hp vasq').before(40);
+    const expect = this.client.api.expect.title().to.equal('hp vasq').before(40);
 
     return this.client.start(function() {
       strictEqual(expect.assertion.waitForMs, 40);
@@ -162,7 +162,7 @@ describe('expect.title', function() {
   it('to not equal to [PASSED]', function() {
     Nocks.title('xx');
 
-    let expect = this.client.api.expect.title().to.not.equal('vasq');
+    const expect = this.client.api.expect.title().to.not.equal('vasq');
     assert.ok(expect.assertion.message.startsWith('Expected page title to'));
 
     return this.client.start(function() {
@@ -183,7 +183,7 @@ describe('expect.title', function() {
     
     Nocks.title('xx');
 
-    let expect = this.client.api.expect.title().to.not.equal('xx');
+    const expect = this.client.api.expect.title().to.not.equal('xx');
     assert.ok(expect.assertion.message.startsWith('Expected page title to'));
 
     return this.client.start(function() {

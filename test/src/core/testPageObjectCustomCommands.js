@@ -30,8 +30,8 @@ describe('test PageObject Commands', function () {
   });
 
   it('testPageObjectCustomCommands', function (done) {
-    let api = this.client.api;
-    let page = api.page.simplePageObj();
+    const api = this.client.api;
+    const page = api.page.simplePageObj();
 
     page
       .waitForElementPresent('#weblogin', 1000, true, function callback(result) {
@@ -46,7 +46,7 @@ describe('test PageObject Commands', function () {
   });
 
   it('testPageObject - custom commands object definition', function () {
-    let api = this.client.api;
+    const api = this.client.api;
 
     const page = api.page.simplePageObjWithCommandsObject();
     assert.strictEqual(typeof page.dropdownSelect, 'function');
@@ -56,7 +56,7 @@ describe('test PageObject Commands', function () {
   });
 
   it('testPageObject - custom commands class definition', function () {
-    let api = this.client.api;
+    const api = this.client.api;
 
     const page = api.page.simplePageObjWithCommandsClass();
 
@@ -76,7 +76,7 @@ describe('test PageObject Commands', function () {
   });
 
   it('testPageObject - custom commands class definition - throws Error', function () {
-    let api = this.client.api;
+    const api = this.client.api;
     let expectedError;
     try {
       const page = api.page.simplePageObjWithCommandsClassThrowsError();
@@ -94,7 +94,7 @@ describe('test PageObject Commands', function () {
       url: '/wd/hub/session/1352110219202/execute',
       method: 'POST'
     });
-    let api = this.client.api;
+    const api = this.client.api;
 
     const page = api.page.simplePageObjWithCommandsObject().customExecute(['test']);
 
@@ -106,7 +106,7 @@ describe('test PageObject Commands', function () {
       url: '/wd/hub/session/1352110219202/execute',
       method: 'POST'
     });
-    let api = this.client.api;
+    const api = this.client.api;
 
     const page = api.page.simplePageObjWithCommandsObject().customExecute({prop: true});
 
@@ -114,7 +114,7 @@ describe('test PageObject Commands', function () {
   });
 
   it('testPageObject - error loading custom commands', function (done) {
-    let api = this.client.api;
+    const api = this.client.api;
 
     try {
       api.page.simplePageObjWithError();

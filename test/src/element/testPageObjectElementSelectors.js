@@ -42,7 +42,7 @@ describe('test page object element selectors', function() {
       .text(0, 'first')
       .text(1, 'second');
 
-    let page = Nightwatch.api().page.simplePageObj();
+    const page = Nightwatch.api().page.simplePageObj();
 
     page
       .getText('@loginAsString', function callback(result) {
@@ -79,9 +79,9 @@ describe('test page object element selectors', function() {
       .text(0, 'first')
       .text(1, 'second');
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
-    let sectionChild = section.section.getStarted;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
+    const sectionChild = section.section.getStarted;
 
     section
       .getText('@help', function callback(result) {
@@ -139,8 +139,8 @@ describe('test page object element selectors', function() {
       .elementsFound('#signupSection')
       .elementsId('0', '#helpBtn', [{ELEMENT: '12345'}]);
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.api.elements('@help', function callback(response) {
       strictEqual(response.status, 0, 'section element selector string found');
@@ -158,8 +158,8 @@ describe('test page object element selectors', function() {
       .elementsId('0', '#helpBtn', [{ELEMENT: '0'}])
       .text(0, 'first');
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section
       .getText({selector: '#helpBtn', timeout: 100, retryInterval: 50}, function callback(result) {
@@ -186,8 +186,8 @@ describe('test page object element selectors', function() {
       .elementsFound('#signupSection')
       .elementId('0', '#helpBtn', 'css selector', {ELEMENT: '12345'});
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.api.element('#helpBtn', function callback(response) {
       strictEqual(response.status, 0, 'section element selector string found');
@@ -204,8 +204,8 @@ describe('test page object element selectors', function() {
       .elementsId('0', '#helpBtn', [{ELEMENT: '12345'}])
       .elementsId('12345', 'a', [{ELEMENT: 'abc-12345'}]);
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.api.elementIdElements('@help', 'css selector', 'a', function callback(response) {
       strictEqual(response.status, 0, 'section element selector string not found');
@@ -221,8 +221,8 @@ describe('test page object element selectors', function() {
       .elementsId('0', '#helpBtn', [{ELEMENT: '12345'}])
       .elementId('12345', 'a', 'css selector', {ELEMENT: 'abc-12345'});
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.api.elementIdElement('@help', 'css selector', 'a', function callback(response) {
       strictEqual(response.status, 0, 'section element selector string found');
@@ -244,11 +244,11 @@ describe('test page object element selectors', function() {
 
     Nightwatch.api().globals.waitForConditionPollInterval = 10;
 
-    let page = Nightwatch.api().page.simplePageObj();
+    const page = Nightwatch.api().page.simplePageObj();
     page.testCommand();
-    let section = page.section.signUp;
+    const section = page.section.signUp;
 
-    let expect = section.expect.element('@help').to.be.visible.before(15);
+    const expect = section.expect.element('@help').to.be.visible.before(15);
 
     return Nightwatch.start(function(err) {
       assert.ok(err instanceof Error, 'Expected err to be an Error but found: ' + typeof err);
@@ -279,8 +279,8 @@ describe('test page object element selectors', function() {
       .elementFound('#helpBtn')
       .elementsId('0', '#helpBtn', []);
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.assert.not.elementPresent('@help', function(result) {
       assert.strictEqual(result.passed, true);
@@ -319,8 +319,8 @@ describe('test page object element selectors', function() {
       .clearValue('10');
 
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.customClearValue('@help', function(selector, result) {
       assert.deepStrictEqual(selector, {
@@ -373,8 +373,8 @@ describe('test page object element selectors', function() {
       .elementFound('#helpBtn')
       .elementsId('0', '#helpBtn', [{ELEMENT: '0'}]);
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section
       .customCommandWithSelector('@help', function(result) {
@@ -397,8 +397,8 @@ describe('test page object element selectors', function() {
       .elementFound('#helpBtn')
       .elementsId('0', '#helpBtn', [{ELEMENT: '0'}]);
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section
       .customCommandWithSelector('test message', function(result) {
@@ -416,7 +416,7 @@ describe('test page object element selectors', function() {
       .elementIdNotFound(0, '#helpBtn', 'xpath')
       .elementsId('0', '#helpBtn', [{ELEMENT: '0'}]);
 
-    let page = Nightwatch.api().page.simplePageObj();
+    const page = Nightwatch.api().page.simplePageObj();
 
     page
       .assert.customAssertionWithSelector('@loginAsString', 0, function(result, assertion) {
@@ -458,8 +458,8 @@ describe('test page object element selectors', function() {
       .elementFound('#helpBtn')
       .elementsId('0', '#helpBtn', [{ELEMENT: '0'}]);
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.assert.customAssertionWithSelector('@help', 0, function(result, assertion) {
       try {
@@ -488,8 +488,8 @@ describe('test page object element selectors', function() {
       .elementsId(0, '#helpBtn', [{ELEMENT: '1'}, {ELEMENT: '2'}])
       .elementId(0, '#helpBtn', null, {ELEMENT: '1'});
 
-    let page = Nightwatch.api().page.simplePageObj();
-    let section = page.section.signUp;
+    const page = Nightwatch.api().page.simplePageObj();
+    const section = page.section.signUp;
 
     section.assert.customAssertionWithSelector({selector: '@help', index: 1}, 0, function(result, assertion) {
       try {
@@ -512,12 +512,12 @@ describe('test page object element selectors', function() {
   });
 
   it('nested folder page object is loaded properly', function() {
-    let fooPage = Nightwatch.api().page.api.method.foo();
-    let fooSection = fooPage.section.foo;
+    const fooPage = Nightwatch.api().page.api.method.foo();
+    const fooSection = fooPage.section.foo;
     strictEqual(fooSection.name, 'foo');
 
-    let barPage = Nightwatch.api().page.api.method.bar();
-    let barSection = barPage.section.bar;
+    const barPage = Nightwatch.api().page.api.method.bar();
+    const barSection = barPage.section.bar;
     strictEqual(barSection.name, 'bar');
   });
 

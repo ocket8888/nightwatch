@@ -55,7 +55,7 @@ describe('alert commands', function () {
   });
 
   it('testSetAlertText', function (done) {
-    let text = 'prompt text to set';
+    const text = 'prompt text to set';
 
     Globals.protocolTest({
       assertion: function (value) {

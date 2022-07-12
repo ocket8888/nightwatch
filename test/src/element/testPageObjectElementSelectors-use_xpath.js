@@ -31,7 +31,7 @@ describe('test page object element selectors with locateStrategy from nightwatch
       }
     });
 
-    let page = Nightwatch.api().page.simplePageObjDefaultXpath();
+    const page = Nightwatch.api().page.simplePageObjDefaultXpath();
     assert.strictEqual(page.elements.xpathElement.locateStrategy, 'xpath');
     assert.strictEqual(page.elements.xpathElement2.locateStrategy, 'xpath');
     assert.strictEqual(page.elements.cssSelectorElement.locateStrategy, 'css selector');
@@ -53,7 +53,7 @@ describe('test page object element selectors with locateStrategy from nightwatch
       }
     });
 
-    let page = Nightwatch.api().page.simplePageObjDefaultXpath();
+    const page = Nightwatch.api().page.simplePageObjDefaultXpath();
     assert.strictEqual(page.elements.xpathElement.locateStrategy, 'css selector');
     assert.strictEqual(page.elements.xpathElement2.locateStrategy, 'css selector');
     assert.strictEqual(page.elements.cssSelectorElement.locateStrategy, 'css selector');
@@ -83,7 +83,7 @@ describe('test page object element selectors with locateStrategy from nightwatch
         .text('0', 'first');
 
 
-      let page = Nightwatch.api().page.simplePageObjDefaultXpath();
+      const page = Nightwatch.api().page.simplePageObjDefaultXpath();
 
       page
         .getText('@xpathElement', function callback(result) {

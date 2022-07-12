@@ -22,7 +22,7 @@ describe('expect.property', function() {
       .elementFound()
       .propertyValue('vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.property('className').which.matches(/vasq/);
+    const expect = this.client.api.expect.element('#weblogin').to.have.property('className').which.matches(/vasq/);
 
     assert.strictEqual(expect.assertion.message, 'Expected element %s to have dom property "className"');
     this.client.api.perform(function() {
@@ -117,7 +117,7 @@ describe('expect.property', function() {
       .elementFound()
       .propertyValue(['class-one', 'class-two'], 'classList');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.property('classList').equal(['class-one', 'class-two']);
+    const expect = this.client.api.expect.element('#weblogin').to.have.property('classList').equal(['class-one', 'class-two']);
 
     assert.strictEqual(expect.assertion.message, 'Expected element %s to have dom property "classList"');
     this.client.api.perform(function() {
@@ -137,7 +137,7 @@ describe('expect.property', function() {
       .elementFound()
       .propertyValue(['class-one', 'class-two'], 'classList');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one');
+    const expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one');
 
     assert.strictEqual(expect.assertion.message, 'Expected element %s to have dom property "classList"');
     this.client.api.perform(function() {
@@ -157,7 +157,7 @@ describe('expect.property', function() {
     this.client.api.globals.abortOnAssertionFailure = false;
     this.client.api.globals.waitForConditionTimeout = 65;
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one').before(100);
+    const expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one').before(100);
 
     this.client.api.perform(function() {
       assert.strictEqual(expect.assertion.message, 'Expected element <#weblogin> to have dom property "classList" contain: "class-one" in 100ms (' + expect.assertion.elapsedTime + 'ms)');
@@ -175,7 +175,7 @@ describe('expect.property', function() {
     this.client.api.globals.waitForConditionTimeout = 65;
     this.client.api.globals.waitForConditionPollInterval = 55;
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one').before(50);
+    const expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one').before(50);
 
     this.client.api.perform(function() {
       assert.strictEqual(expect.assertion.message, 'Expected element <#weblogin> to have dom property "classList" contain: "class-one" in 50ms - element was not found - expected "contain \'class-one\'" but got: "not present" (' + expect.assertion.elapsedTime + 'ms)');

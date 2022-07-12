@@ -23,7 +23,7 @@ describe('expect.url', function() {
 
     it('to contain [PASSED]', function() {
       Nocks.url().getUrl();
-      let expect = this.client.api.expect.url().to.contain('localhost');
+      const expect = this.client.api.expect.url().to.contain('localhost');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.passed, true);
@@ -40,7 +40,7 @@ describe('expect.url', function() {
         .getUrl('about:blank')
         .getUrl();
 
-      let expect = this.client.api.expect.url().contains('localhost');
+      const expect = this.client.api.expect.url().contains('localhost');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.retries, 1);
@@ -55,7 +55,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl().getUrl().getUrl();
 
-      let expect = this.client.api.expect.url().to.equal('vasq');
+      const expect = this.client.api.expect.url().to.equal('vasq');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.negate, false);
@@ -86,7 +86,7 @@ describe('expect.url', function() {
 
     it('to contain [PASSED]', function() {
       Nocks.url().getUrl();
-      let expect = this.client.api.expect.url().to.contain('localhost');
+      const expect = this.client.api.expect.url().to.contain('localhost');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.passed, true);
@@ -100,7 +100,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl().getUrl().getUrl();
 
-      let expect = this.client.api.expect.url().contains('localhost');
+      const expect = this.client.api.expect.url().contains('localhost');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.waitForMs, 10);
@@ -118,7 +118,7 @@ describe('expect.url', function() {
         .getUrl('about:blank')
         .getUrl();
 
-      let expect = this.client.api.expect.url().contains('localhost');
+      const expect = this.client.api.expect.url().contains('localhost');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.retries, 1);
@@ -133,7 +133,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl().getUrl().getUrl();
 
-      let expect = this.client.api.expect.url().to.equal('vasq');
+      const expect = this.client.api.expect.url().to.equal('vasq');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.negate, false);
@@ -149,7 +149,7 @@ describe('expect.url', function() {
       this.client.api.globals.waitForConditionPollInterval = 10;
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url().contains('localhost').before(5);
+      const expect = this.client.api.expect.url().contains('localhost').before(5);
 
       return this.client.start(function() {
         strictEqual(expect.assertion.waitForMs, 5);
@@ -162,7 +162,7 @@ describe('expect.url', function() {
     it('to NOT equal to [PASSED]', function() {
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.equal('xx');
+      const expect = this.client.api.expect.url().to.not.equal('xx');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.negate, true);
@@ -179,7 +179,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl().getUrl().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.equal('http://localhost');
+      const expect = this.client.api.expect.url().to.not.equal('http://localhost');
 
       return this.client.start(function() {
         strictEqual(expect.assertion.negate, true);
@@ -194,7 +194,7 @@ describe('expect.url', function() {
     it('to not equal to [PASSED]', function() {
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.equal('vasq');
+      const expect = this.client.api.expect.url().to.not.equal('vasq');
       assert.ok(expect.assertion.message.startsWith('Expected current url to'));
 
       return this.client.start(function() {
@@ -213,7 +213,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.equal('http://localhost');
+      const expect = this.client.api.expect.url().to.not.equal('http://localhost');
       assert.ok(expect.assertion.message.startsWith('Expected current url to'));
 
       return this.client.start(function() {
@@ -230,7 +230,7 @@ describe('expect.url', function() {
     it('to not contains [PASSED]', function() {
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.contains('vasq');
+      const expect = this.client.api.expect.url().to.not.contains('vasq');
 
       assert.ok(expect.assertion.message.startsWith('Expected current url to'));
 
@@ -253,7 +253,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl().getUrl().getUrl().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.contains('http://localhost');
+      const expect = this.client.api.expect.url().to.not.contains('http://localhost');
       assert.ok(expect.assertion.message.startsWith('Expected current url to'));
 
       return this.client.start(function() {
@@ -270,7 +270,7 @@ describe('expect.url', function() {
     it('to not match [PASSED]', function() {
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url().to.not.match(/vasq/);
+      const expect = this.client.api.expect.url().to.not.match(/vasq/);
 
       assert.ok(expect.assertion.message.startsWith('Expected current url to'));
 
@@ -294,7 +294,7 @@ describe('expect.url', function() {
         .getUrl()
         .getUrl();
 
-      let expect = this.client.api.expect.url().to.not.match(/localhost/);
+      const expect = this.client.api.expect.url().to.not.match(/localhost/);
       assert.ok(expect.assertion.message.startsWith('Expected current url to'));
 
       return this.client.start(function() {
@@ -314,7 +314,7 @@ describe('expect.url', function() {
 
       Nocks.url().getUrl();
 
-      let expect = this.client.api.expect.url();
+      const expect = this.client.api.expect.url();
       assert.throws(function() {
         expect.matches('');
       }.bind(this));

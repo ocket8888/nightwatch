@@ -18,8 +18,8 @@ describe('test Queue', function () {
   });
 
   it('Test commands queue', function () {
-    let client = this.client;
-    let queue = client.queue;
+    const client = this.client;
+    const queue = client.queue;
     let urlCommand;
     let endCommand;
     Nocks.url().deleteSession();

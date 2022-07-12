@@ -7,9 +7,9 @@ const {runTests} = common.require('index.js');
 describe('testRunWithExistingCommands', function () {
 
   it('testRunner with element locate errors enabled', function () {
-    let testsPath = path.join(__dirname, '../../sampletests/');
+    const testsPath = path.join(__dirname, '../../sampletests/');
 
-    let globals = {
+    const globals = {
       retryAssertionTimeout: 90,
       abortOnElementLocateError: true,
       waitForConditionTimeout: 90,

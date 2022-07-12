@@ -168,7 +168,7 @@ describe('ChromeDriver Transport Tests', function () {
 
     let serverPath;
     let serverPort;
-    let buildArgs = [];
+    const buildArgs = [];
     let logFilePath;
 
     mockServiceBuilder({

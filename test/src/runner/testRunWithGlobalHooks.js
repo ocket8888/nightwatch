@@ -32,11 +32,11 @@ describe('testRunWithGlobalHooks', function() {
   });
 
   it('testRunner with globalBefore and after', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after');
+    const testsPath = path.join(__dirname, '../../sampletests/before-after');
     let beforeEachCount = 0;
     let afterEachCount = 0;
 
-    let globals = {
+    const globals = {
       calls: 0,
 
       beforeEach() {
@@ -74,8 +74,8 @@ describe('testRunWithGlobalHooks', function() {
   this.timeout(10000);
 
   it('testRunner with global async beforeEach and afterEach', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/before-after');
+    const globals = {
       calls: 0,
       beforeEach(cb) {
         setTimeout(function() {
@@ -105,8 +105,8 @@ describe('testRunWithGlobalHooks', function() {
   });
 
   it('testRunner with global async beforeEach and afterEach with api argument', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/before-after');
+    const globals = {
       calls: 0,
       beforeEach(client, done) {
         assert.deepStrictEqual(client.globals, this);
@@ -139,7 +139,7 @@ describe('testRunWithGlobalHooks', function() {
 
   it('test run with global async beforeEach and assert failure', function() {
     let beforeEachCount = 0;
-    let testsPath = path.join(__dirname, '../../sampletests/before-after');
+    const testsPath = path.join(__dirname, '../../sampletests/before-after');
 
     return runTests(testsPath, settings({
       globals: {
@@ -161,7 +161,7 @@ describe('testRunWithGlobalHooks', function() {
   });
 
   it('test run with global async beforeEach and exception', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after/');
+    const testsPath = path.join(__dirname, '../../sampletests/before-after/');
 
     return runTests(testsPath, settings({
       output: false,
@@ -192,7 +192,7 @@ describe('testRunWithGlobalHooks', function() {
   });
 
   it('test run with global async beforeEach and timeout error', async function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after');
+    const testsPath = path.join(__dirname, '../../sampletests/before-after');
 
     let expectedErr;
 
@@ -213,7 +213,7 @@ describe('testRunWithGlobalHooks', function() {
   });
 
   it('test run with global async beforeEach and done(err);', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after');
+    const testsPath = path.join(__dirname, '../../sampletests/before-after');
 
     return runTests(testsPath, settings({
       globals: {
@@ -232,8 +232,8 @@ describe('testRunWithGlobalHooks', function() {
   });
 
   it('test currentTest in global beforeEach/afterEach', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/withfailures');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/withfailures');
+    const globals = {
       calls: 0,
       waitForConditionPollInterval: 5,
       waitForConditionTimeout: 5,

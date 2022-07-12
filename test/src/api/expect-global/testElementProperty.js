@@ -83,7 +83,7 @@ describe('expect(element.property)', function() {
       .elementFound()
       .propertyValue(['class-one', 'class-two'], 'classList');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one');
+    const expect = this.client.api.expect.element('#weblogin').to.have.property('classList').contain('class-one');
 
     assert.strictEqual(expect.assertion.message, 'Expected element %s to have dom property "classList"');
     this.client.api.perform(function() {

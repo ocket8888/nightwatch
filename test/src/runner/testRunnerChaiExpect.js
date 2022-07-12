@@ -20,7 +20,7 @@ describe('testRunnerChaiExpect', function() {
   it('testRunWithChaiExpect', function() {
     const testsPath = path.join(__dirname, '../../sampletests/withchaiexpect');
     const Settings = common.require('settings/settings.js');
-    let settings = Settings.parse({
+    const settings = Settings.parse({
       selenium: {
         port: 10195,
         host: 'localhost',

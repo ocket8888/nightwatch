@@ -23,7 +23,7 @@ describe('expect.cookie', function () {
 
     it('to contain [PASSED]', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
-      let expect = this.client.api.expect.cookie('cookie-name').to.contain('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name').to.contain('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, true);
@@ -37,7 +37,7 @@ describe('expect.cookie', function () {
 
       Nocks.cookie('cookie-name', 'cookie-value');
 
-      let expect = this.client.api.expect.cookie('cookie-name').contains('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name').contains('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.waitForMs, 40);
@@ -65,7 +65,7 @@ describe('expect.cookie', function () {
 
     it('to contain [PASSED]', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
-      let expect = this.client.api.expect.cookie('cookie-name').to.contain('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name').to.contain('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, true);
@@ -79,7 +79,7 @@ describe('expect.cookie', function () {
 
       Nocks.cookie('cookie-name', 'cookie-value');
 
-      let expect = this.client.api.expect.cookie('cookie-name').contains('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name').contains('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.waitForMs, 40);
@@ -241,7 +241,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
       Nocks.cookie('cookie-name', 'cookie-value');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.equal('other-cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name').to.equal('other-cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.expected, 'equal \'other-cookie-value\'');
@@ -257,7 +257,7 @@ describe('expect.cookie', function () {
     it('to NOT equal to [PASSED]', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.not.equal('xx');
+      const expect = this.client.api.expect.cookie('cookie-name').to.not.equal('xx');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.negate, true);
@@ -275,7 +275,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
       Nocks.cookie('cookie-name', 'cookie-value');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.not.equal('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name').to.not.equal('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.negate, true);
@@ -292,7 +292,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'other');
       Nocks.cookie('cookie-name', 'cookie-value');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.equal('cookie-value').before(110);
+      const expect = this.client.api.expect.cookie('cookie-name').to.equal('cookie-value').before(110);
       Nocks.cookie('cookie-name', 'cookie-value');
 
       return this.client.start(function () {
@@ -311,7 +311,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'other');
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.equal('cookie-value').before(30);
+      const expect = this.client.api.expect.cookie('cookie-name').to.equal('cookie-value').before(30);
 
       return this.client.start(function () {
         strictEqual(expect.assertion.waitForMs, 30);
@@ -325,7 +325,7 @@ describe('expect.cookie', function () {
     it('to not contains [PASSED]', function () {
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.not.contains('vasq');
+      const expect = this.client.api.expect.cookie('cookie-name').to.not.contains('vasq');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.expected, 'not contain \'vasq\'');
@@ -341,7 +341,7 @@ describe('expect.cookie', function () {
 
     it('with domain to contain [PASSED]', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
-      let expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').to.contain('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').to.contain('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, true);
@@ -358,7 +358,7 @@ describe('expect.cookie', function () {
         .cookieNotFound()
         .cookieNotFound()
         .cookieNotFound();
-      let expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').to.equal('other-cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').to.equal('other-cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, false);
@@ -372,7 +372,7 @@ describe('expect.cookie', function () {
 
       Nocks.cookie('cookie-name', 'cookie-value');
       Nocks.cookie('cookie-name', 'cookie-value');
-      let expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').to.contain('other-cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').to.contain('other-cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, false);
@@ -382,7 +382,7 @@ describe('expect.cookie', function () {
 
     it('with domain to NOT contain [PASSED]', function () {
       Nocks.cookie('cookie-name', 'cookie-value');
-      let expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').not.to.contain('other-cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').not.to.contain('other-cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, true);
@@ -396,7 +396,7 @@ describe('expect.cookie', function () {
 
       Nocks.cookie('cookie-name', 'cookie-value');
       Nocks.cookie('cookie-name', 'cookie-value');
-      let expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').not.to.contain('cookie-value');
+      const expect = this.client.api.expect.cookie('cookie-name', 'cookie-domain').not.to.contain('cookie-value');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.passed, false);
@@ -412,7 +412,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'other');
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.not.contains('other');
+      const expect = this.client.api.expect.cookie('cookie-name').to.not.contains('other');
 
       return this.client.start(function () {
         strictEqual(expect.assertion.negate, true);
@@ -426,7 +426,7 @@ describe('expect.cookie', function () {
     it('to not match [PASSED]', function () {
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.not.match(/vasq/);
+      const expect = this.client.api.expect.cookie('cookie-name').to.not.match(/vasq/);
 
       return this.client.start(function () {
         assert.ok(expect.assertion.message.startsWith('Expected cookie "cookie-name" to'));
@@ -447,7 +447,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'other');
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.not.match(/other/);
+      const expect = this.client.api.expect.cookie('cookie-name').to.not.match(/other/);
 
       return this.client.start(function () {
         assert.ok(expect.assertion.message.startsWith('Expected cookie "cookie-name" to'));
@@ -465,7 +465,7 @@ describe('expect.cookie', function () {
 
       Nocks.cookie('', 'other');
       Nocks.cookie('', 'other');
-      let expect = this.client.api.expect.cookie('cookie-name').to.equal('vasq');
+      const expect = this.client.api.expect.cookie('cookie-name').to.equal('vasq');
 
       return this.client.start(function () {
         assert.ok(expect.assertion.message.startsWith('Expected cookie "cookie-name" to equal: "vasq" - no cookie "cookie-name" was found'), expect.assertion.message);
@@ -483,7 +483,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('', 'other');
       Nocks.cookie('cookie-name', 'hp vasq');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.equal('hp vasq').before(60);
+      const expect = this.client.api.expect.cookie('cookie-name').to.equal('hp vasq').before(60);
 
       return this.client.start(function () {
         strictEqual(expect.assertion.waitForMs, 60);
@@ -499,7 +499,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'other');
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name');
+      const expect = this.client.api.expect.cookie('cookie-name');
       assert.throws(function () {
         expect.matches('');
       }.bind(this));
@@ -513,7 +513,7 @@ describe('expect.cookie', function () {
       Nocks.cookie('cookie-name', 'other');
       Nocks.cookie('cookie-name', 'other');
 
-      let expect = this.client.api.expect.cookie('cookie-name').to.equal('hp vasq').before(60);
+      const expect = this.client.api.expect.cookie('cookie-name').to.equal('hp vasq').before(60);
 
       return this.client.start(function () {
         strictEqual(expect.assertion.waitForMs, 60);

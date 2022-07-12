@@ -23,7 +23,7 @@ describe('expect.elements count', function() {
 
     it('count to equal [PASSED]', function() {
       Nocks.elementsFound('.classname');
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(4);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(4);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.passed, true);
@@ -38,7 +38,7 @@ describe('expect.elements count', function() {
       Nocks.elementsFound('.classname');
       Nocks.elementsFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(5);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(5);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.expected, 'equal \'5\'');
@@ -70,7 +70,7 @@ describe('expect.elements count', function() {
 
     it('count to equal [PASSED]', function() {
       Nocks.elementsFound('.classname');
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(4);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(4);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.passed, true);
@@ -85,7 +85,7 @@ describe('expect.elements count', function() {
       Nocks.elementsFound('.classname');
       Nocks.elementsFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(5);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(5);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.expected, 'equal \'5\'');
@@ -101,7 +101,7 @@ describe('expect.elements count', function() {
     it('count to NOT equal [PASSED]', function() {
       Nocks.elementsFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.not.equal(888);
+      const expect = this.client.api.expect.elements('.classname').count.to.not.equal(888);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.negate, true);
@@ -119,7 +119,7 @@ describe('expect.elements count', function() {
       Nocks.elementsFound('.classname');
       Nocks.elementsFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.not.equal(4);
+      const expect = this.client.api.expect.elements('.classname').count.to.not.equal(4);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.expected, 'not equal \'4\'');
@@ -136,7 +136,7 @@ describe('expect.elements count', function() {
       Nocks.elementsNotFound('.classname');
       Nocks.elementsFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(4).before(100);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(4).before(100);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -153,7 +153,7 @@ describe('expect.elements count', function() {
       Nocks.elementsFound('.classname');
       Nocks.elementsFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(888).before(25);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(888).before(25);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 25);
@@ -172,7 +172,7 @@ describe('expect.elements count', function() {
       Nocks.elementsNotFound('.classname');
       Nocks.elementsNotFound('.classname');
 
-      let expect = this.client.api.expect.elements('.classname').count.to.equal(4);
+      const expect = this.client.api.expect.elements('.classname').count.to.equal(4);
 
       return this.client.start(function() {
         assert.ok(expect.assertion.message.startsWith('Expected elements <.classname> count to'));

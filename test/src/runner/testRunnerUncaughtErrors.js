@@ -27,11 +27,11 @@ describe('testRunWithUncaughtErrors', function() {
   });
 
   it('test runner with uncaught exception', function(done) {
-    let testsPath = path.join(__dirname, '../../sampletests/withuncaughterrors');
+    const testsPath = path.join(__dirname, '../../sampletests/withuncaughterrors');
     let errorReported = false;
     let testErr;
 
-    let globals = {
+    const globals = {
       reporter(results) {
         if (results.errmessages.length) {
           errorReported = true;

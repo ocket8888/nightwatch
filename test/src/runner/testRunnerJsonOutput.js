@@ -33,7 +33,7 @@ describe('testRunnerJsonOutput', function() {
   });
 
   it('testRunWithJsonOutput', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/withsubfolders')
     ];
 
@@ -46,8 +46,8 @@ describe('testRunnerJsonOutput', function() {
         return readDirPromise(testsPath[0]);
       })
       .then(list => {
-        let simpleReportFile = path.resolve('output/simple/FIREFOX_TEST_firefox__sample.json');
-        let tagsReportFile = path.resolve('output/tags/FIREFOX_TEST_firefox__sampleTags.json');
+        const simpleReportFile = path.resolve('output/simple/FIREFOX_TEST_firefox__sample.json');
+        const tagsReportFile = path.resolve('output/tags/FIREFOX_TEST_firefox__sampleTags.json');
 
         assert.deepStrictEqual(list, ['simple', 'tags'], 'The subfolders have not been created.');
         assert.ok(fileExistsSync(simpleReportFile), 'The simple report file was not created.');

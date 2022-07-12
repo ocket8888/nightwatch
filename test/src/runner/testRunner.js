@@ -58,7 +58,7 @@ describe('testRunner', function() {
   });
 
   it('testRunEmptySubFolder', function(done) {
-    let testsPath = path.dirname(emptyPath);
+    const testsPath = path.dirname(emptyPath);
 
     Globals
       .startTestRunner(testsPath, {
@@ -75,7 +75,7 @@ describe('testRunner', function() {
   });
 
   it('testRunNoSrcFoldersArgument', function() {
-    let settings = Settings.parse({
+    const settings = Settings.parse({
       output_folder: false
     });
 
@@ -85,8 +85,8 @@ describe('testRunner', function() {
   });
 
   it('testRunSimple', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/simple');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/simple');
+    const globals = {
       reporter(results) {
         assert.ok(`test${path.sep}sample` in results.modules);
         assert.ok('demoTest' in results.modules[`test${path.sep}sample`].completed);

@@ -27,7 +27,7 @@ describe('testRunner ES6 Async', function () {
 
 
   it('test Runner with ES6 fluent api basic sample', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/es6await/basicSampleTest.js');
+    const testsPath = path.join(__dirname, '../../sampletests/es6await/basicSampleTest.js');
     MockServer.addMock({
       url: '/wd/hub/session/1352110219202/cookie/test_cookie',
       method: 'GET',
@@ -46,7 +46,7 @@ describe('testRunner ES6 Async', function () {
       })
     }, true);
 
-    let globals = {
+    const globals = {
       waitForConditionPollInterval: 150,
       waitForConditionTimeout: 100,
       retryAssertionTimeout: 150,
@@ -69,7 +69,7 @@ describe('testRunner ES6 Async', function () {
   });
 
   it('test Runner with ES6 async/await tests basic sample', function () {
-    let testsPath = path.join(__dirname, '../../sampletests/es6await/selenium');
+    const testsPath = path.join(__dirname, '../../sampletests/es6await/selenium');
     MockServer.addMock({
       url: '/wd/hub/session/1352110219202/cookie',
       method: 'GET',
@@ -88,7 +88,7 @@ describe('testRunner ES6 Async', function () {
       })
     }, true);
 
-    let globals = {
+    const globals = {
       waitForConditionPollInterval: 50,
 
       reporter(results) {

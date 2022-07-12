@@ -2,7 +2,7 @@ const assert = require('assert');
 
 describe('samepleSingleTest', function() {
   before(function(client, callback) {
-    let testName = client.currentTest.name;
+    const testName = client.currentTest.name;
     assert.strictEqual(testName, '');
     client.globals.calls++;
     client.globals.singleTestCalled = true;

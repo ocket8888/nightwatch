@@ -38,7 +38,7 @@ describe('test Request With Credentials', function () {
         }
       });
 
-    let client = Nightwatch.createClient({
+    const client = Nightwatch.createClient({
       selenium_port: 10195,
       silent: false,
       output: false,

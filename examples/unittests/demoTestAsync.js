@@ -1,12 +1,12 @@
-const assert = require('assert');
+const assert = require("assert");
 
 module.exports = {
-  '@unitTest': true,
+	"@unitTest": true,
 
-  'demo UnitTest': function (done) {
-    assert.strictEqual('TEST', 'TEST');
-    setTimeout(function() {
-      done();
-    }, 10);
-  }
+	"demo UnitTest": function (done) {
+		assert.strictEqual("TEST", "TEST");
+		setTimeout(function() {
+			done();
+		}, 10);
+	}
 };

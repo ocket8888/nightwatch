@@ -45,7 +45,7 @@ describe('test defaultPathPrefix', function () {
       }
     });
 
-    let request = new HttpRequest({
+    const request = new HttpRequest({
       host: '127.0.0.1',
       path: '/test',
       port: 10195
@@ -63,7 +63,7 @@ describe('test defaultPathPrefix', function () {
       default_path_prefix: '/test'
     });
 
-    let request = new HttpRequest({
+    const request = new HttpRequest({
       host: '127.0.0.1',
       path: '/test',
       port: 10195
@@ -83,8 +83,8 @@ describe('test defaultPathPrefix', function () {
       }
     });
 
-    let eq = assert.strictEqual;
-    let request = new HttpRequest({
+    const eq = assert.strictEqual;
+    const request = new HttpRequest({
       host: '127.0.0.1',
       path: '/session',
       port: 10195

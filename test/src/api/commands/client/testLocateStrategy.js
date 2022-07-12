@@ -11,7 +11,7 @@ describe('Locate strategies', function() {
   });
 
   it('browser.useXpath()', function(done) {
-    let client = this.client;
+    const client = this.client;
     this.client.api.useXpath(function() {
       assert.strictEqual(client.locateStrategy, 'xpath');
     });
@@ -20,7 +20,7 @@ describe('Locate strategies', function() {
   });
 
   it('browser.useCss()', function(done) {
-    let client = this.client;
+    const client = this.client;
     this.client.api.useCss(function() {
       assert.strictEqual(client.locateStrategy, 'css selector');
     });

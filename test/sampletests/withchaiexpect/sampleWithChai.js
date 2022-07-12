@@ -10,7 +10,7 @@ module.exports = {
       .elements('css selector', '#weblogin', function (result) {
         client.globals.test.ok(result.value);
 
-        let assertion = client.expect(result.value).to.have.length(1);
+        const assertion = client.expect(result.value).to.have.length(1);
         client.globals.test.deepEqual(assertion.__flags.get('object'), [{ELEMENT: '0'}]);
 
         try {

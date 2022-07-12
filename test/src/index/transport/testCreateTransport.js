@@ -236,7 +236,7 @@ describe('Transport.create()', function () {
   });
 
   it('test create Transport for Safari managed', function() {
-    let client = NightwatchClient.client({
+    const client = NightwatchClient.client({
       selenium: {
         start_process: false
       },
@@ -255,7 +255,7 @@ describe('Transport.create()', function () {
   it('test create Transport for Safari remote', function() {
     const Transport = common.require('transport/index.js');
 
-    let safariDriver = Transport.create({
+    const safariDriver = Transport.create({
       settings: {
         selenium: {
           start_process: false
@@ -277,7 +277,7 @@ describe('Transport.create()', function () {
   it('test create Transport for Chrome managed and no selenium settings', function() {
     const Transport = common.require('transport/index.js');
 
-    let chromeDriver = Transport.create({
+    const chromeDriver = Transport.create({
       settings: {
         webdriver: {
           start_process: true

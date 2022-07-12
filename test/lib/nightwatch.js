@@ -46,7 +46,7 @@ module.exports = new function () {
   }
 
   this.createClient = function(options = {}, reporter = null, argv = {}) {
-    let opts = {
+    const opts = {
       selenium: {
         port: 10195,
         host: 'localhost',
@@ -129,7 +129,7 @@ module.exports = new function () {
   };
 
   this.initClient = function(options, reporter) {
-    let client = this.createClient(options, reporter);
+    const client = this.createClient(options, reporter);
 
     extendClient(client);
 

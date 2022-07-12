@@ -17,7 +17,7 @@ describe('expect.css', function() {
   it('to have css property [PASSED]', function() {
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -33,7 +33,7 @@ describe('expect.css', function() {
   it('to have css property with waitFor [PASSED]', function() {
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(100);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(100);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -48,7 +48,7 @@ describe('expect.css', function() {
 
     Nocks.elementFound().cssProperty('', 4);
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(40);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(40);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.passed, false, 'Assertion should fail');
@@ -59,7 +59,7 @@ describe('expect.css', function() {
   it('to have css property with message [PASSED]', function() {
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.passed, true);
@@ -76,7 +76,7 @@ describe('expect.css', function() {
       .cssProperty('')
       .cssProperty('');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display');
 
     this.client.api.perform(function() {
       assert.strictEqual(expect.assertion.passed, false);
@@ -95,7 +95,7 @@ describe('expect.css', function() {
       .cssProperty('')
       .cssProperty('');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -120,7 +120,7 @@ describe('expect.css', function() {
       .cssProperty('')
       .cssProperty('');
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.have.css('display');
+    const expect = this.client.api.expect.element('#weblogin').to.not.have.css('display');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -143,7 +143,7 @@ describe('expect.css', function() {
       .cssProperty('x')
       .cssProperty('x');
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.have.css('display');
+    const expect = this.client.api.expect.element('#weblogin').to.not.have.css('display');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -167,7 +167,7 @@ describe('expect.css', function() {
       .elementNotFound()
       .cssProperty(null);
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -186,7 +186,7 @@ describe('expect.css', function() {
     Nocks.elementFound().cssProperty('block');
     this.client.api.globals.waitForConditionTimeout = 65;
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 65);
@@ -199,7 +199,7 @@ describe('expect.css', function() {
     Nocks.elementFound().cssProperty('block');
     this.client.api.globals.waitForConditionTimeout = 100;
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.equals('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.equals('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -217,7 +217,7 @@ describe('expect.css', function() {
       .cssProperty('block')
       .cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('b');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('b');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'equal to \'b\'');
@@ -233,7 +233,7 @@ describe('expect.css', function() {
   it('to have css property NOT equal to [PASSED]', function() {
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.equal('xx');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.equal('xx');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.negate, true);
@@ -253,7 +253,7 @@ describe('expect.css', function() {
       .cssProperty('block')
       .cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.equal('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.equal('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'not equal to \'block\'');
@@ -270,7 +270,7 @@ describe('expect.css', function() {
     this.client.api.globals.waitForConditionPollInterval = 50;
     Nocks.elementFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block').before(110);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block').before(110);
     Nocks.cssProperty('').cssProperty('block');
 
     return this.client.start(function() {
@@ -285,7 +285,7 @@ describe('expect.css', function() {
     this.client.api.globals.waitForConditionPollInterval = 50;
     Nocks.elementFound().cssProperty('', 3);
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block').before(120);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block').before(120);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 120);
@@ -299,7 +299,7 @@ describe('expect.css', function() {
     this.client.api.globals.waitForConditionPollInterval = 10;
     Nocks.elementFound().cssProperty('xx', 3);
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block').before(20);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('block').before(20);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 20);
@@ -315,7 +315,7 @@ describe('expect.css', function() {
   it('to have css property which contains [PASSED]', function() {
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.contains('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.contains('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'contains \'block\'');
@@ -331,7 +331,7 @@ describe('expect.css', function() {
     this.client.api.globals.waitForConditionPollInterval = 200;
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display which equals block').equal('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display which equals block').equal('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.actual, 'block');
@@ -349,7 +349,7 @@ describe('expect.css', function() {
       .cssProperty('')
       .cssProperty('');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display which equals block').equal('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display which equals block').equal('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.passed, false);
@@ -365,7 +365,7 @@ describe('expect.css', function() {
       .cssProperty('xx')
       .cssProperty('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display which equals block').equal('block');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display', 'Testing if #weblogin has display which equals block').equal('block');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.passed, false);
@@ -382,7 +382,7 @@ describe('expect.css', function() {
       .cssProperty('xx')
       .cssProperty('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.contains('vasq');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.contains('vasq');
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s to have css property "display"'));
 
@@ -405,7 +405,7 @@ describe('expect.css', function() {
       .cssProperty('xx')
       .cssProperty('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.contains('xx');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.contains('xx');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'not contain \'xx\'');
@@ -421,7 +421,7 @@ describe('expect.css', function() {
   it('to have css property which matches [PASSED]', function() {
     Nocks.elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.matches(/block/);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.matches(/block/);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'matches \'/block/\'');
@@ -443,7 +443,7 @@ describe('expect.css', function() {
       .cssProperty('xx')
       .cssProperty('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.match(/vasq/);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.match(/vasq/);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'not match \'/vasq/\'');
@@ -464,7 +464,7 @@ describe('expect.css', function() {
       .cssProperty('xx')
       .cssProperty('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.match(/xx/);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').not.match(/xx/);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'not match \'/xx/\'');
@@ -486,7 +486,7 @@ describe('expect.css', function() {
       .elementNotFound()
       .elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('vasq');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').equal('vasq');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'equal to \'vasq\'');
@@ -508,7 +508,7 @@ describe('expect.css', function() {
       .elementNotFound()
       .elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.contains('vasq');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.contains('vasq');
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'contains \'vasq\'');
@@ -526,7 +526,7 @@ describe('expect.css', function() {
 
     Nocks.elementNotFound().elementNotFound().elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(60);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -540,7 +540,7 @@ describe('expect.css', function() {
 
     Nocks.elementNotFound().elementFound().cssProperty('block');
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').before(60);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -557,7 +557,7 @@ describe('expect.css', function() {
       .elementNotFound()
       .elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.matches(/vasq$/);
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').which.matches(/vasq$/);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.expected, 'matches \'/vasq$/\'');

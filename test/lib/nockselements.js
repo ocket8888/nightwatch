@@ -9,7 +9,7 @@ module.exports = {
   _protocolUri: '/wd/hub/session/1352110219202/',
 
   _addNock(...args) {
-    let item = nock(...args);
+    const item = nock(...args);
 
     this._currentNocks.push(item);
 

@@ -44,8 +44,8 @@ describe('testRunWithServerErrors', function() {
       response: '<html>\n<head>\n<title>502 Bad Gateway</title>\n</head>\n<body>\n</body></html>'
     });
 
-    let testsPath = path.join(__dirname, '../../sampletests/withservererrors');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/withservererrors');
+    const globals = {
       calls: 0,
       retryAssertionTimeout: 150,
       waitForConditionTimeout: 150,

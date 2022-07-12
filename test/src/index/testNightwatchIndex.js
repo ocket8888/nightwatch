@@ -19,7 +19,7 @@ describe('test NightwatchIndex', function () {
   });
 
   it('Test initialization', function (done) {
-    let client = Nightwatch.createClient({
+    const client = Nightwatch.createClient({
       silent: false,
       output: false
     });
@@ -63,7 +63,7 @@ describe('test NightwatchIndex', function () {
       method: 'GET'
     }, true);
 
-    let client = Nightwatch.createClient({
+    const client = Nightwatch.createClient({
       desiredCapabilities: {
         browserName: 'chrome'
       },
@@ -98,7 +98,7 @@ describe('test NightwatchIndex', function () {
       method: 'POST'
     }, true);
 
-    let client = Nightwatch.createClient({
+    const client = Nightwatch.createClient({
       selenium: {
         start_process: false,
         host: null
@@ -139,7 +139,7 @@ describe('test NightwatchIndex', function () {
       method: 'POST'
     }, true);
 
-    let client = Nightwatch.createClient({
+    const client = Nightwatch.createClient({
       desiredCapabilities: {
         browserName: 'firefox',
         platform: 'TEST'
@@ -171,7 +171,7 @@ describe('test NightwatchIndex', function () {
       method: 'POST'
     }, true);
 
-    let client = Nightwatch.createClient({
+    const client = Nightwatch.createClient({
       desiredCapabilities: {
         browserName: 'safari'
       },

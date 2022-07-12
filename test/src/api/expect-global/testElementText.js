@@ -84,7 +84,7 @@ describe('expect(element.property)', function() {
       .elementFound()
       .text(['class-one', 'class-two']);
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.contain('class-one');
+    const expect = this.client.api.expect.element('#weblogin').text.to.contain('class-one');
 
     assert.strictEqual(expect.assertion.message, 'Expected element %s text to');
     this.client.api.perform(function() {

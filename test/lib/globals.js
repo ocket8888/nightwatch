@@ -179,8 +179,8 @@ class Globals {
   }
 
   startTestRunner(testsPath, suppliedSettings) {
-    let settings = Settings.parse(suppliedSettings);
-    let runner = Runner.create(settings, {
+    const settings = Settings.parse(suppliedSettings);
+    const runner = Runner.create(settings, {
       reporter: 'junit'
     });
 

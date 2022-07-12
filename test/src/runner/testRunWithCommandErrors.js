@@ -45,8 +45,8 @@ describe('testRunWithCommandErrors', function() {
         }
       }, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: true,
         waitForConditionTimeout: 90,
@@ -94,8 +94,8 @@ describe('testRunWithCommandErrors', function() {
         }
       }, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: true,
         waitForConditionTimeout: 90,
@@ -130,8 +130,8 @@ describe('testRunWithCommandErrors', function() {
         response: ''
       }, null, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: true,
         waitForConditionTimeout: 90,
@@ -172,8 +172,8 @@ describe('testRunWithCommandErrors', function() {
         response: ''
       }, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: true,
         waitForConditionTimeout: 90,
@@ -229,8 +229,8 @@ describe('testRunWithCommandErrors', function() {
         }
       }, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withcommanderrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: true,
         waitForConditionTimeout: 90,
@@ -275,8 +275,8 @@ describe('testRunWithCommandErrors', function() {
         response: {value: []}
       }, false, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withelementerrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withelementerrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: true,
         waitForConditionTimeout: 90,
@@ -313,8 +313,8 @@ describe('testRunWithCommandErrors', function() {
         response: {value: []}
       }, false, true);
 
-      let testsPath = path.join(__dirname, '../../sampletests/withelementerrors');
-      let globals = {
+      const testsPath = path.join(__dirname, '../../sampletests/withelementerrors');
+      const globals = {
         retryAssertionTimeout: 90,
         abortOnElementLocateError: false,
         waitForConditionTimeout: 90,

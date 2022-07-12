@@ -68,7 +68,7 @@ describe('testRunBrowserstackTransport', function() {
   });
 
   it('run with error', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/withfailures/');
+    const testsPath = path.join(__dirname, '../../sampletests/withfailures/');
 
     return runTests(testsPath, settings({
       output: false,

@@ -11,7 +11,7 @@ describe('test Parallel Execution Exit Code', function() {
   this.timeout(5000);
 
   beforeEach(function() {
-    let index = 0;
+    const index = 0;
     mockery.enable({useCleanCache: true, warnOnUnregistered: false});
     mockery.registerMock('package.json', {});
     mockery.registerMock('child_process', {
@@ -28,7 +28,7 @@ describe('test Parallel Execution Exit Code', function() {
         util.inherits(Stdout, events.EventEmitter);
         util.inherits(Stderr, events.EventEmitter);
 
-        let Child = function() {
+        const Child = function() {
           this.stdout = new Stdout();
           this.stderr = new Stderr();
           setTimeout(function() {
@@ -64,13 +64,13 @@ describe('test Parallel Execution Exit Code', function() {
 
   it('test parallel execution with code non zero test workers', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       config: path.join(__dirname, '../../extra/parallelism-count.json')
     });
 
     runner.setup();
 
-    let setExitCode = runner.processListener.setExitCode;
+    const setExitCode = runner.processListener.setExitCode;
     runner.processListener.setExitCode = function(code) {
       runner.processListener.setExitCode = setExitCode;
       assert.strictEqual(code, 1);
@@ -81,14 +81,14 @@ describe('test Parallel Execution Exit Code', function() {
 
   it('test parallel execution with code non zero envs', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       config: path.join(__dirname, '../../extra/parallelism-envs.json'),
       env: 'env1,env2'
     });
 
     runner.setup();
 
-    let setExitCode = runner.processListener.setExitCode;
+    const setExitCode = runner.processListener.setExitCode;
     runner.processListener.setExitCode = function(code) {
       runner.processListener.setExitCode = setExitCode;
       assert.strictEqual(code, 1);

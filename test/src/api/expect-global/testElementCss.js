@@ -83,7 +83,7 @@ describe('expect(element.css)', function() {
       .elementFound()
       .cssProperty(['class-one', 'class-two']);
 
-    let expect = this.client.api.expect.element('#weblogin').to.have.css('display').contain('class-one');
+    const expect = this.client.api.expect.element('#weblogin').to.have.css('display').contain('class-one');
 
     assert.strictEqual(expect.assertion.message, 'Expected element %s to have css property "display"');
     this.client.api.perform(function() {

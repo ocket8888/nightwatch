@@ -60,7 +60,7 @@ describe('window commands', function() {
   });
 
   it('testWindowCommand', function() {
-    let protocol = this.protocol;
+    const protocol = this.protocol;
 
     assert.throws(
       function() {

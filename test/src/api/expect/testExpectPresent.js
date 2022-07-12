@@ -24,7 +24,7 @@ describe('expect.present', function() {
     it('to be present with waitFor [PASSED]', function() {
       Nocks.elementFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present.before(100);
+      const expect = this.client.api.expect.element('#weblogin').to.be.present.before(100);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -40,7 +40,7 @@ describe('expect.present', function() {
         .elementNotFound()
         .elementNotFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present.before(60);
+      const expect = this.client.api.expect.element('#weblogin').to.be.present.before(60);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -74,7 +74,7 @@ describe('expect.present', function() {
         .elementFound()
         .elementFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present;
+      const expect = this.client.api.expect.element('#weblogin').to.be.present;
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -89,7 +89,7 @@ describe('expect.present', function() {
     it('to be present with waitFor [PASSED]', function() {
       Nocks.elementFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present.before(100);
+      const expect = this.client.api.expect.element('#weblogin').to.be.present.before(100);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -105,7 +105,7 @@ describe('expect.present', function() {
         .elementNotFound()
         .elementNotFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present.before(60);
+      const expect = this.client.api.expect.element('#weblogin').to.be.present.before(60);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -122,7 +122,7 @@ describe('expect.present', function() {
         .elementNotFound()
         .elementNotFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present;
+      const expect = this.client.api.expect.element('#weblogin').to.be.present;
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -140,7 +140,7 @@ describe('expect.present', function() {
       this.client.api.globals.waitForConditionPollInterval = 50;
       Nocks.elementNotFound().elementFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.be.present.before(60);
+      const expect = this.client.api.expect.element('#weblogin').to.be.present.before(60);
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -157,7 +157,7 @@ describe('expect.present', function() {
         .elementNotFound()
         .elementNotFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.not.be.present;
+      const expect = this.client.api.expect.element('#weblogin').to.not.be.present;
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -178,7 +178,7 @@ describe('expect.present', function() {
         .elementFound()
         .elementFound();
 
-      let expect = this.client.api.expect.element('#weblogin').to.not.be.present;
+      const expect = this.client.api.expect.element('#weblogin').to.not.be.present;
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -195,7 +195,7 @@ describe('expect.present', function() {
       Nocks.elementFoundXpath();
 
       this.client.api.useXpath();
-      let expect = this.client.api.expect.element('//weblogin').to.be.present;
+      const expect = this.client.api.expect.element('//weblogin').to.be.present;
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.selector, '//weblogin');
@@ -207,7 +207,7 @@ describe('expect.present', function() {
     it('to be present - xpath via argument [PASSED]', function() {
       Nocks.elementFoundXpath();
 
-      let expect = this.client.api.expect.element('//weblogin', 'xpath').to.be.present;
+      const expect = this.client.api.expect.element('//weblogin', 'xpath').to.be.present;
 
       return this.client.start(function() {
         assert.strictEqual(expect.assertion.selector, '//weblogin');

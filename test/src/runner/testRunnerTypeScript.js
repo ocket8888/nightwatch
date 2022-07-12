@@ -35,8 +35,8 @@ describe('testRunnerTypeScript', function() {
   this.timeout(5000);
 
   it('testRunSimple', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/typescript');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/typescript');
+    const globals = {
       reporter({lastError, errmessages, modules}) {
         if (lastError) {
           throw lastError;

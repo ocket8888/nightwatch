@@ -17,7 +17,7 @@ describe('expect.enabled', function() {
 
   it('to be enabled [PASSED]', function() {
     Nocks.elementFound().enabled();
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled;
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -32,7 +32,7 @@ describe('expect.enabled', function() {
   it('to be enabled with waitFor [PASSED]', function() {
     Nocks.elementFound().enabled();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(100);
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(100);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -46,7 +46,7 @@ describe('expect.enabled', function() {
 
     Nocks.elementFound().notEnabled(3);
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(60);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -64,7 +64,7 @@ describe('expect.enabled', function() {
       .notEnabled()
       .notEnabled();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled;
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -88,7 +88,7 @@ describe('expect.enabled', function() {
       .notEnabled()
       .notEnabled();
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.be.enabled;
+    const expect = this.client.api.expect.element('#weblogin').to.not.be.enabled;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -111,7 +111,7 @@ describe('expect.enabled', function() {
       .enabled()
       .enabled();
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.be.enabled;
+    const expect = this.client.api.expect.element('#weblogin').to.not.be.enabled;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -134,7 +134,7 @@ describe('expect.enabled', function() {
       .elementNotFound()
       .elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled;
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -153,7 +153,7 @@ describe('expect.enabled', function() {
 
     Nocks.elementFound().enabled(4);
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.be.enabled.before(120);
+    const expect = this.client.api.expect.element('#weblogin').to.not.be.enabled.before(120);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 120);
@@ -167,7 +167,7 @@ describe('expect.enabled', function() {
 
     Nocks.elementNotFound().elementNotFound().elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(60);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -183,7 +183,7 @@ describe('expect.enabled', function() {
 
     Nocks.elementNotFound().elementFound().enabled();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(11);
+    const expect = this.client.api.expect.element('#weblogin').to.be.enabled.before(11);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.passed, true);

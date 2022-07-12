@@ -24,7 +24,7 @@ describe('expect.active', function() {
 
     Nocks.elementFound().active();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.active;
+    const expect = this.client.api.expect.element('#weblogin').to.be.active;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -39,7 +39,7 @@ describe('expect.active', function() {
   it('to be active with waitFor [PASSED]', function() {
     Nocks.elementFound().active();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.active.before(100);
+    const expect = this.client.api.expect.element('#weblogin').to.be.active.before(100);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 100);
@@ -56,7 +56,7 @@ describe('expect.active', function() {
       .notActive()
       .notActive();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.active.before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.be.active.before(60);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -144,7 +144,7 @@ describe('expect.active', function() {
     Nocks.elementFoundXpath().active();
 
     this.client.api.useXpath();
-    let expect = this.client.api.expect.element('//weblogin').to.be.active;
+    const expect = this.client.api.expect.element('//weblogin').to.be.active;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '//weblogin');
@@ -156,7 +156,7 @@ describe('expect.active', function() {
   it('to be active - xpath via argument [PASSED]', function() {
     Nocks.elementFoundXpath().active();
 
-    let expect = this.client.api.expect.element('//weblogin', 'xpath').to.be.active;
+    const expect = this.client.api.expect.element('//weblogin', 'xpath').to.be.active;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '//weblogin');

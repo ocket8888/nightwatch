@@ -61,7 +61,7 @@ describe('expect.selected', function() {
 
     Nocks.elementFound().notSelected(3);
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.selected.before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.be.selected.before(60);
 
     return this.client.start(function() {
       const {elapsedTime, waitForMs, passed, message} = expect.assertion;
@@ -102,7 +102,7 @@ describe('expect.selected', function() {
   it('to not be selected [PASSED]', function() {
     Nocks.elementFound().notSelected();
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.be.selected;
+    const expect = this.client.api.expect.element('#weblogin').to.not.be.selected;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -125,7 +125,7 @@ describe('expect.selected', function() {
       .selected()
       .selected();
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.be.selected;
+    const expect = this.client.api.expect.element('#weblogin').to.not.be.selected;
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.selector, '#weblogin');
@@ -169,7 +169,7 @@ describe('expect.selected', function() {
 
     Nocks.elementFound().selected(3);
 
-    let expect = this.client.api.expect.element('#weblogin').to.not.be.selected.before(120);
+    const expect = this.client.api.expect.element('#weblogin').to.not.be.selected.before(120);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 120);
@@ -183,7 +183,7 @@ describe('expect.selected', function() {
 
     Nocks.elementNotFound().elementNotFound().elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.selected.before(60);
+    const expect = this.client.api.expect.element('#weblogin').to.be.selected.before(60);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 60);
@@ -200,7 +200,7 @@ describe('expect.selected', function() {
       .elementFound()
       .selected();
 
-    let expect = this.client.api.expect.element('#weblogin').to.be.selected.before(11);
+    const expect = this.client.api.expect.element('#weblogin').to.be.selected.before(11);
 
     return this.client.start(function() {
       assert.strictEqual(expect.assertion.waitForMs, 11);

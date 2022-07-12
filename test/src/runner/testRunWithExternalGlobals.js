@@ -26,7 +26,7 @@ describe('testRunWithExternalGlobals', function() {
   });
 
   it('testRun with external globals', function() {
-    let testsPath = path.join(__dirname, '../../sampletests/before-after/sampleSingleTest.js');
+    const testsPath = path.join(__dirname, '../../sampletests/before-after/sampleSingleTest.js');
     const globals = {
       reporterCount: 0
     };

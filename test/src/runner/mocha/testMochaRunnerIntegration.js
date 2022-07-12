@@ -27,7 +27,7 @@ describe('test Mocha Runner integration', function() {
       retryAssertionTimeout: 0
     };
 
-    let testsPath = path.join(__dirname, '../../../mochatests/integration');
+    const testsPath = path.join(__dirname, '../../../mochatests/integration');
     let error;
 
     return runTests(testsPath, settings({

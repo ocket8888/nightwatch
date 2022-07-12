@@ -26,11 +26,11 @@ describe('testRunWithMultipleSources', function() {
   });
 
   it('testRunWithMultipleSourceFiles', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/async/test/sample.js'),
       path.join(__dirname, '../../sampletests/before-after/sampleSingleTest.js')
     ];
-    let globals = {
+    const globals = {
       calls: 0,
       reporter(results) {
         assert.strictEqual(globals.calls, 7);
@@ -46,12 +46,12 @@ describe('testRunWithMultipleSources', function() {
   });
 
   it('testRunWithSourceFilesAndFolders', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/async/test/sample.js'),
       path.join(__dirname, '../../sampletests/before-after/')
     ];
 
-    let globals = {
+    const globals = {
       calls: 0,
       reporter(results) {
         assert.strictEqual(globals.calls, 21);
@@ -69,12 +69,12 @@ describe('testRunWithMultipleSources', function() {
   });
 
   it('testRunner with multiple src_folders value', function() {
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/async/'),
       path.join(__dirname, '../../sampletests/simple/')
     ];
 
-    let globals = {
+    const globals = {
       calls: 0,
       reporter(results) {
         assert.ok(`async${path.sep}test${path.sep}sample` in results.modules);
@@ -104,12 +104,12 @@ describe('testRunWithMultipleSources', function() {
 
     const Client = common.require('index.js');
 
-    let testsPath = [
+    const testsPath = [
       path.join(__dirname, '../../sampletests/async/'),
       path.join(__dirname, '../../sampletests/unittests/')
     ];
 
-    let globals = {
+    const globals = {
       calls: 0,
       reporter(results) {
         assert.ok(`test${path.sep}sample` in results.modules);

@@ -32,7 +32,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRunWithTags', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests(testsPath, settings({
       output: false,
@@ -53,7 +53,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRunWithTagsAndFilterEmpty', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests(testsPath, settings({
       globals: {
@@ -68,7 +68,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRunWithTagsAndFilterNotEmpty', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests(testsPath, settings({
       globals: {
@@ -83,7 +83,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRunWithSkipTagsAndFilterNotEmpty', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests({
       _source: [testsPath],
@@ -100,7 +100,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRun with filter and skiptags no matches', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests({
       _source: [testsPath],
@@ -122,7 +122,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRunWithTagsAndSkipTags', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests({
       _source: [testsPath],
@@ -141,7 +141,7 @@ describe('testRunWithTags', function() {
   });
 
   it('testRunner with tags and skip tags no matches', function() {
-    let testsPath = path.join(__dirname, '../../sampletests');
+    const testsPath = path.join(__dirname, '../../sampletests');
 
     return runTests({
       _source: [testsPath],

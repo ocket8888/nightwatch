@@ -20,7 +20,7 @@ describe('expect.text', function() {
 
   it('text to equal [PASSED]', function() {
     Nocks.elementFound().text('hp vasq');
-    let expect = this.client.api.expect.element('#weblogin').text.to.equal('hp vasq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.equal('hp vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.passed, true);
@@ -56,7 +56,7 @@ describe('expect.text', function() {
   it('text to NOT equal [PASSED]', function() {
     Nocks.elementFound().text('hp vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.equal('xx');
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.equal('xx');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.negate, true);
@@ -76,7 +76,7 @@ describe('expect.text', function() {
       .text('hp vasq')
       .text('hp vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.equal('hp vasq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.equal('hp vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.expected, 'not equal \'hp vasq\'');
@@ -92,7 +92,7 @@ describe('expect.text', function() {
     this.client.api.globals.waitForConditionPollInterval = 50;
     Nocks.elementFound();
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.equal('hp vasq').before(100);
+    const expect = this.client.api.expect.element('#weblogin').text.to.equal('hp vasq').before(100);
     Nocks.text(null).text('hp vasq');
 
     return this.client.start(function() {
@@ -108,7 +108,7 @@ describe('expect.text', function() {
 
     Nocks.elementFound().text('xx', 3);
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.equal('hp vasq').before(25);
+    const expect = this.client.api.expect.element('#weblogin').text.to.equal('hp vasq').before(25);
 
     return this.client.start(function() {
       strictEqual(expect.assertion.waitForMs, 25);
@@ -124,7 +124,7 @@ describe('expect.text', function() {
   it('text to not equal [PASSED]', function() {
     Nocks.elementFound().text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.equal('vasq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.equal('vasq');
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
     return this.client.start(function() {
@@ -147,7 +147,7 @@ describe('expect.text', function() {
       .text('xx')
       .text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.equal('xx');
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.equal('xx');
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
     return this.client.start(function() {
@@ -164,7 +164,7 @@ describe('expect.text', function() {
   it('text to not contain [PASSED]', function() {
     Nocks.elementFound().text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.contain('vasq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.contain('vasq');
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
@@ -182,7 +182,7 @@ describe('expect.text', function() {
   it('text to contain [PASSED]', function() {
     Nocks.elementFound().text('vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.contain('vasq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.contain('vasq');
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
@@ -200,7 +200,7 @@ describe('expect.text', function() {
   it('text to startWith [PASSED]', function() {
     Nocks.elementFound().text('vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.startWith('va');
+    const expect = this.client.api.expect.element('#weblogin').text.to.startWith('va');
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
@@ -218,7 +218,7 @@ describe('expect.text', function() {
   it('text to endWith [PASSED]', function() {
     Nocks.elementFound().text('vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.endWith('sq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.endWith('sq');
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
@@ -242,7 +242,7 @@ describe('expect.text', function() {
       .text('xx')
       .text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.contains('xx');
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.contains('xx');
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
     return this.client.start(function() {
@@ -258,7 +258,7 @@ describe('expect.text', function() {
   it('text to match [PASSED]', function() {
     Nocks.elementFound().text('vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq/);
+    const expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq/);
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
@@ -276,7 +276,7 @@ describe('expect.text', function() {
   it('text to not match [PASSED]', function() {
     Nocks.elementFound().text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.match(/vasq/);
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.match(/vasq/);
 
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
@@ -300,7 +300,7 @@ describe('expect.text', function() {
       .text('xx')
       .text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.not.match(/xx/);
+    const expect = this.client.api.expect.element('#weblogin').text.to.not.match(/xx/);
     assert.ok(expect.assertion.message.startsWith('Expected element %s text to'));
 
     return this.client.start(function() {
@@ -350,7 +350,7 @@ describe('expect.text', function() {
       .elementNotFound()
       .elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.contain('vasq');
+    const expect = this.client.api.expect.element('#weblogin').text.to.contain('vasq');
 
     return this.client.start(function() {
       strictEqual(expect.assertion.expected, 'contain \'vasq\'');
@@ -369,7 +369,7 @@ describe('expect.text', function() {
       .elementNotFound()
       .elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq$/);
+    const expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq$/);
 
     return this.client.start(function() {
       strictEqual(expect.assertion.expected, 'match \'/vasq$/\'');
@@ -384,7 +384,7 @@ describe('expect.text', function() {
 
     Nocks.elementNotFound().elementNotFound().elementNotFound();
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq$/).before(60);
+    const expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq$/).before(60);
 
     return this.client.start(function() {
       strictEqual(expect.assertion.waitForMs, 60);
@@ -398,7 +398,7 @@ describe('expect.text', function() {
 
     Nocks.elementNotFound().elementFound().text('hp vasq');
 
-    let expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq$/).before(60);
+    const expect = this.client.api.expect.element('#weblogin').text.to.match(/vasq$/).before(60);
 
     return this.client.start(function() {
       strictEqual(expect.assertion.waitForMs, 60);
@@ -416,7 +416,7 @@ describe('expect.text', function() {
       .text('xx')
       .text('xx');
 
-    let expect = this.client.api.expect.element('#weblogin').text;
+    const expect = this.client.api.expect.element('#weblogin').text;
     assert.throws(function() {
       expect.which.matches('');
     }.bind(this));

@@ -1,61 +1,61 @@
 class ConsentCommand {
-  turnOffSearchCustomization() {
-    this.page.section.customizeSearch.click('@turnOffButton');
+	turnOffSearchCustomization() {
+		this.page.section.customizeSearch.click("@turnOffButton");
 
-    return this;
-  }
+		return this;
+	}
 
-  turnOffYoutubeHistory() {
-    this.page.section.youtubeHistory.click('@turnOffButton');
+	turnOffYoutubeHistory() {
+		this.page.section.youtubeHistory.click("@turnOffButton");
 
-    return this;
-  }
+		return this;
+	}
 
-  turnOffAdPersonalization() {
-    this.page.section.adPersonalization.click('@turnOffButton');
+	turnOffAdPersonalization() {
+		this.page.section.adPersonalization.click("@turnOffButton");
 
-    return this;
-  }
+		return this;
+	}
 
-  confirm() {
-    this.page.section.consentForm.click('@submitButton');
+	confirm() {
+		this.page.section.consentForm.click("@submitButton");
 
-    return this;
-  }
+		return this;
+	}
 
-  turnOffEverything() {
-    return this.turnOffSearchCustomization()
-      .turnOffYoutubeHistory()
-      .turnOffAdPersonalization()
-      .confirm();
-  }
+	turnOffEverything() {
+		return this.turnOffSearchCustomization()
+			.turnOffYoutubeHistory()
+			.turnOffAdPersonalization()
+			.confirm();
+	}
 }
 
 const createSectionFor = (text) => {
-  return Object.assign({
-    selector: `//div[contains(.,"${text}")]`,
-    locateStrategy: 'xpath'
-  }, {
-    elements: {
-      turnOffButton: 'button[aria-label^="Turn off"]'
-    }
-  });
+	return Object.assign({
+		selector: `//div[contains(.,"${text}")]`,
+		locateStrategy: "xpath"
+	}, {
+		elements: {
+			turnOffButton: "button[aria-label^=\"Turn off\"]"
+		}
+	});
 };
 
 module.exports = {
-  url: 'http://google.com',
-  commands: ConsentCommand,
+	url: "http://google.com",
+	commands: ConsentCommand,
 
-  sections: {
-    customizeSearch: createSectionFor('Search customization'),
-    youtubeHistory: createSectionFor('YouTube History'),
-    adPersonalization: createSectionFor('Ad personalization'),
+	sections: {
+		customizeSearch: createSectionFor("Search customization"),
+		youtubeHistory: createSectionFor("YouTube History"),
+		adPersonalization: createSectionFor("Ad personalization"),
 
-    consentForm: {
-      selector: 'form[action^="https://consent.google"]',
-      elements: {
-        submitButton: 'button'
-      }
-    }
-  }
+		consentForm: {
+			selector: "form[action^=\"https://consent.google\"]",
+			elements: {
+				submitButton: "button"
+			}
+		}
+	}
 };

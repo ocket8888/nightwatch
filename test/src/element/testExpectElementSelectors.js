@@ -28,14 +28,14 @@ describe('test expect element selectors', function() {
       .elementsId(0, '#helpBtn', [{ELEMENT: '0'}, {ELEMENT: '1'}])
       .elementsByXpath();
 
-    let api = Nightwatch.api();
+    const api = Nightwatch.api();
     api.globals.abortOnAssertionFailure = false;
     api.globals.suppressWarningsOnMultipleElementsReturned = true;
 
-    let page = api.page.simplePageObj();
-    let section = page.section.signUp;
+    const page = api.page.simplePageObj();
+    const section = page.section.signUp;
 
-    let passingAssertions = [
+    const passingAssertions = [
       api.expect.element('.nock').to.be.present.before(1),
       api.expect.element({selector: '.nock'}).to.be.present.before(1),
       api.expect.element({selector: '//[@class="nock"]', locateStrategy: 'xpath'}).to.be.present.before(1),
@@ -59,10 +59,10 @@ describe('test expect element selectors', function() {
       .elementsFound()
       .elementsByXpathError();
 
-    let api = Nightwatch.api();
+    const api = Nightwatch.api();
     api.globals.abortOnAssertionFailure = true;
 
-    let expect = api.expect.element({selector: '.nock', locateStrategy: 'xpath'}).to.be.present.before(1);
+    const expect = api.expect.element({selector: '.nock', locateStrategy: 'xpath'}).to.be.present.before(1);
 
     Nightwatch.start(function(err) {
       assert.strictEqual(expect.assertion.passed, false);
@@ -77,7 +77,7 @@ describe('test expect element selectors', function() {
       .elementsFound()
       .elementsFound('#signupSection', [{ELEMENT: '0'}]);
 
-    let api = Nightwatch.api();
+    const api = Nightwatch.api();
     api.globals.abortOnAssertionFailure = false;
 
     assert.throws(function() {
@@ -93,10 +93,10 @@ describe('test expect element selectors', function() {
       .elementsFound('#signupSection')
       .elementsByXpath();
 
-    let api = Nightwatch.api();
+    const api = Nightwatch.api();
     api.globals.abortOnAssertionFailure = false;
 
-    let page = api.page.simplePageObj();
+    const page = api.page.simplePageObj();
     try {
       page.expect.section({selector: '@signUp', locateStrategy: 'xpath'}).to.be.present;
     } catch (err) {

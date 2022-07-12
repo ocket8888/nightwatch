@@ -105,7 +105,7 @@ describe('.waitUntil()', function () {
 
     it('client.waitUntil() function failure with custom timeout', function (done) {
       let tries = 0;
-      let startTime = new Date().valueOf();
+      const startTime = new Date().valueOf();
       let timeDiff;
       const maxTimeout = 300;
       const client = this.client.api;
@@ -136,7 +136,7 @@ describe('.waitUntil()', function () {
 
     it('client.waitUntil() function failure with custom timeout and default interval', function (done) {
       let tries = 0;
-      let startTime = new Date().valueOf();
+      const startTime = new Date().valueOf();
       let timeDiff;
       const maxTimeout = 300;
       const client = this.client.api;

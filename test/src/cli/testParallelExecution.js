@@ -62,10 +62,10 @@ describe('test Parallel Execution', function() {
 
   it('testParallelExecution', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let originalCwd = process.cwd();
+    const originalCwd = process.cwd();
     process.chdir(path.join(__dirname, '../../extra/'));
 
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       config: './nightwatch.json',
       env: 'default,mixed',
       reporter: 'junit'
@@ -90,7 +90,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with workers defaults', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism.json')
     });
@@ -108,11 +108,11 @@ describe('test Parallel Execution', function() {
   });
 
   it('testParallelExecutionSameEnv', function() {
-    let originalCwd = process.cwd();
+    const originalCwd = process.cwd();
     process.chdir(path.join(__dirname, '../../extra/'));
 
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       config: './nightwatch.json',
       reporter: 'junit',
       env: 'mixed,mixed'
@@ -134,7 +134,7 @@ describe('test Parallel Execution', function() {
 
   it('testParallelExecutionWithWorkersAuto', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism-auto.json')
     });
@@ -152,7 +152,7 @@ describe('test Parallel Execution', function() {
 
   it('testParallelExecutionWithWorkers and multiple environments', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism-auto.json'),
       env: 'default,default'
@@ -165,7 +165,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with workers count', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism-count.json')
     });
@@ -183,7 +183,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with parallel=count arg', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism-count.json'),
       parallel: 2
@@ -198,7 +198,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with workers count and extended envs', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism-workers.conf.js'),
       env: 'chrome'
@@ -216,7 +216,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with workers disabled per environment', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism-disabled.json')
     });
@@ -228,7 +228,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with workers and single source file', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism.json'),
       _source: [path.join(__dirname, '../../../sampletests/async/test/sample.js')]
@@ -242,7 +242,7 @@ describe('test Parallel Execution', function() {
 
   it('test parallel execution with workers and single source folder', function() {
     const CliRunner = common.require('runner/cli/cli.js');
-    let runner = new CliRunner({
+    const runner = new CliRunner({
       reporter: 'junit',
       config: path.join(__dirname, '../../extra/parallelism.json'),
       _source: path.join(__dirname, '../../../sampletests/before-after')

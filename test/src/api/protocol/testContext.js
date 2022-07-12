@@ -27,7 +27,7 @@ describe('context commands', function() {
   });
 
   it('testSetContext', function() {
-    let text = 'NATIVE';
+    const text = 'NATIVE';
 
     return Globals.protocolTest({
       assertion: function(opts) {

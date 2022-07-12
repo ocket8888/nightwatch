@@ -31,12 +31,12 @@ describe('testRunTestSuite', function () {
   });
 
   it('testRunner with --fail-fast cli argument', function () {
-    let src_folders = [
+    const src_folders = [
       path.join(__dirname, '../../sampletests/withfailures'),
       path.join(__dirname, '../../sampletests/withsubfolders')
     ];
 
-    let globals = {
+    const globals = {
       calls: 0,
       retryAssertionTimeout: 0,
       reporter(results, cb) {
@@ -59,12 +59,12 @@ describe('testRunTestSuite', function () {
   });
 
   it('testRunner with enable_fail_fast setting', function () {
-    let src_folders = [
+    const src_folders = [
       path.join(__dirname, '../../sampletests/withfailures'),
       path.join(__dirname, '../../sampletests/withsubfolders')
     ];
 
-    let globals = {
+    const globals = {
       calls: 0,
       retryAssertionTimeout: 0,
       reporter(results, cb) {
@@ -113,7 +113,7 @@ describe('testRunTestSuite', function () {
       response: JSON.stringify({sessionId: '1352110219202', status: 0, value: 'jean sibelius'})
     }, true);
 
-    let globals = {
+    const globals = {
       calls: 0,
       reporter(results, cb) {
         assert.ok('sampleTest' in results.modules);
@@ -129,7 +129,7 @@ describe('testRunTestSuite', function () {
       }
     };
 
-    let testsPath = path.join(__dirname, '../../sampletests/syncnames');
+    const testsPath = path.join(__dirname, '../../sampletests/syncnames');
 
     return runTests({
       _source: [testsPath]
@@ -141,12 +141,12 @@ describe('testRunTestSuite', function () {
   });
 
   it('test run multiple sources and same module name', function () {
-    let srcFolders = [
+    const srcFolders = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/mixed')
     ];
 
-    let globals = {
+    const globals = {
       reporter(results, cb) {
         assert.ok(`test${path.sep}sample` in results.modules);
         assert.ok(`mixed${path.sep}sample` in results.modules);
@@ -165,7 +165,7 @@ describe('testRunTestSuite', function () {
   });
 
   it('testRunMultipleSrcFolders', function () {
-    let srcFolders = [
+    const srcFolders = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/srcfolders')
     ];
@@ -190,7 +190,7 @@ describe('testRunTestSuite', function () {
   });
 
   it('test runner with multiple test interfaces - exports/describe', function () {
-    let srcFolders = [
+    const srcFolders = [
       path.join(__dirname, '../../sampletests/simple'),
       path.join(__dirname, '../../sampletests/withdescribe/basic')
     ];
@@ -219,7 +219,7 @@ describe('testRunTestSuite', function () {
   });
 
   it('test runner with describe and .only()', function () {
-    let srcFolders = [
+    const srcFolders = [
       path.join(__dirname, '../../sampletests/withdescribe/basic/sampleWithOnly.js')
     ];
 
@@ -240,8 +240,8 @@ describe('testRunTestSuite', function () {
   });
 
   it('testRunner with describe and skipTestcasesOnFail=true', function () {
-    let testsPath = path.join(__dirname, '../../sampletests/withdescribe/failures/sampleSkipTestcases.js');
-    let globals = {
+    const testsPath = path.join(__dirname, '../../sampletests/withdescribe/failures/sampleSkipTestcases.js');
+    const globals = {
       calls: 0,
       retryAssertionTimeout: 0,
       reporter(results, cb) {
