@@ -21,7 +21,7 @@
     "no-extra-boolean-cast": 0,
     "quotes": [
       "error",
-      "single"
+      "double"
     ],
     "curly": [
       "error",
@@ -43,16 +43,16 @@
         "omitLastInOneLineBlock": true
       }
     ],
-    "no-trailing-spaces": 0,
-    "no-else-return": 0,
+    "no-trailing-spaces": "error",
+    "no-else-return": "error",
     "no-extra-bind": 0,
     "no-implicit-coercion": 0,
-    "no-useless-call": 0,
-    "no-return-assign": 0,
-    "eol-last": 0,
-    "no-unused-vars": 0,
-    "no-extra-semi": 0,
-    "comma-dangle": 2,
+    "no-useless-call": "error",
+    "no-return-assign": "error",
+    "eol-last": "error",
+    "no-unused-vars": "error",
+    "no-extra-semi": "error",
+    "comma-dangle": "warn",
     "no-underscore-dangle": 0,
     "no-lone-blocks": 0,
     "array-bracket-spacing": 2,
@@ -96,13 +96,10 @@
     ],
     "indent": [
       "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
+      "tab"
     ],
     "prefer-const": [
-      "warn"
+      "error"
     ]
   },
   "globals": {
