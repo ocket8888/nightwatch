@@ -1,11 +1,27 @@
-const boxen = require("boxen");
-const {colors} = require("./colors.js");
-const isErrorObject = require("./isErrorObject.js");
-const addDetailedError = require("./addDetailedError.js");
+import boxen from "boxen";
+
+import Colors from "./colors";
+import isErrorObject from "./isErrorObject";
+import addDetailedError from "./addDetailedError";
+
+const {colors} = Colors;
 const indentRegex = /^/gm;
 
-const stackTraceFilter = function (parts) {
-	const stack = parts.reduce(function(list, line) {
+function contains(str: string, text: string | Array<string>): boolean {
+	if (Array.isArray(text)) {
+		for (const item of text) {
+			if (contains(str, item)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	return str.includes(text);
+};
+
+function stackTraceFilter(parts: Array<string>): string {
+	const stack = parts.reduce((list, line) => {
 		if (contains(line, [
 			"node_modules",
 			"(node.js:",
@@ -27,25 +43,17 @@ const stackTraceFilter = function (parts) {
 		list.push(line);
 
 		return list;
-	}, []);
+	}, new Array<string>());
 
 	return stack.join("\n");
 };
 
-const contains = function(str, text) {
-	if (Array.isArray(text)) {
-		for (let i = 0; i < text.length; i++) {
-			if (contains(str, text[i])) {
-				return true;
-			}
-		}
-	}
-
-	return str.includes(text);
-};
-
-const filterStack = function(err) {
+function filterStack(err: unknown): string {
 	if (err instanceof Error) {
+		if (!err.stack) {
+			// consistent with old behavior
+			throw new TypeError("err.stack is undefined");
+		}
 		const stackTrace = err.stack.split("\n").slice(1);
 
 		return stackTraceFilter(stackTrace);
@@ -54,15 +62,20 @@ const filterStack = function(err) {
 	return "";
 };
 
-const filterStackTrace = function(stackTrace = "") {
+function filterStackTrace(stackTrace: string = ""): string {
 	const sections = stackTrace.split("\n");
 
 	return stackTraceFilter(sections);
 };
 
-const showStackTrace = function (stack) {
+function showStackTrace(stack: string) {
 	const parts = stack.split("\n");
 	const headline = parts.shift();
+
+	// preserves old behavior
+	if (headline === undefined) {
+		throw new TypeError("headline is undefined");
+	}
 
 	console.error(colors.red(headline.replace(indentRegex, "   ")));
 
@@ -76,27 +89,27 @@ const showStackTrace = function (stack) {
  * @method errorToStackTrace
  * @param {Error} err
  */
-const errorToStackTrace = function(err) {
+function errorToStackTrace(err?: Error | string | undefined): string {
 	if (!isErrorObject(err)) {
 		err = new Error(err);
 	}
 
-	addDetailedError(err);
+	const detailedErr = addDetailedError(err);
 
-	let headline = err.message ? `${err.name}: ${err.message}` : err.name;
+	let headline = detailedErr.message ? `${detailedErr.name}: ${detailedErr.message}` : detailedErr.name;
 	headline = colors.red(headline.replace(indentRegex, " "));
 
-	if (err.detailedErr) {
-		headline += `\n ${colors.light_green(err.detailedErr)}`;
-		if (err.extraDetail) {
-			headline += `\n ${colors.light_green(err.extraDetail)}`;
+	if (detailedErr.detailedErr) {
+		headline += `\n ${colors.light_green(detailedErr.detailedErr)}`;
+		if (detailedErr.extraDetail) {
+			headline += `\n ${colors.light_green(detailedErr.extraDetail)}`;
 		}
 	}
 
-	const showStack = err.showTrace || err.showTrace === undefined;
+	const showStack = detailedErr.showTrace || detailedErr.showTrace === undefined;
 	let stackTrace = "";
 
-	if (!showStack && err.reportShown) {
+	if (!showStack && detailedErr.reportShown) {
 		return " " + headline;
 	}
 
@@ -110,7 +123,7 @@ const errorToStackTrace = function(err) {
 	return `${headline}${stackTrace}`;
 };
 
-module.exports = {
+export = {
 	errorToStackTrace,
 	stackTraceFilter,
 	filterStack,

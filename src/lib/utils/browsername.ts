@@ -1,4 +1,13 @@
-const BrowserName = module.exports = {
+type BrowserNameType = {
+	readonly CHROME: string;
+	readonly FIREFOX: string;
+	readonly SAFARI: string;
+	readonly EDGE: string;
+	readonly INTERNET_EXPLORER: string;
+	readonly OPERA: string;
+};
+
+const BrowserName: Readonly<BrowserNameType> = {
 	get CHROME() {
 		return "chrome";
 	},
@@ -25,3 +34,5 @@ const BrowserName = module.exports = {
 };
 
 Object.freeze(BrowserName);
+
+export = BrowserName;

@@ -1,9 +1,9 @@
-module.exports = function (fullpath) {
+function requireModule(fullpath: string): any {
   let exported;
   try {
     exported = require(fullpath);
   } catch (err) {
-    if (err.code !== 'ERR_REQUIRE_ESM') {
+    if (err instanceof Error && (err as Error & {code?: string}).code !== 'ERR_REQUIRE_ESM') {
       throw err;
     }
 
@@ -16,3 +16,5 @@ module.exports = function (fullpath) {
 
   return exported;
 }
+
+export = requireModule;

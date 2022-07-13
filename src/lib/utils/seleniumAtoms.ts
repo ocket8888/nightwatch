@@ -2,14 +2,14 @@ const getAttribute = "get-attribute.js";
 const isDisplayed = "is-displayed.js";
 const findElements = "find-elements.js";
 
-const path = require("path");
+import * as path from "path";
 const SELENIUM_ATOMS_PATH = path.join(path.dirname(require.resolve("selenium-webdriver")), "lib", "atoms");
 
 /**
  * @param {string} module
  * @return {!Function}
  */
-function requireAtom(module) {
+function requireAtom(module: string) {
 	try {
 		return require(path.join(SELENIUM_ATOMS_PATH, module));
 	} catch (ex) {
@@ -17,9 +17,8 @@ function requireAtom(module) {
 	}
 }
 
-module.exports = {
+export = {
 	requireIsDisplayed() {
 		return requireAtom(isDisplayed);
 	}
 };
-

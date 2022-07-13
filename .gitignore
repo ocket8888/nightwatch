@@ -32,3 +32,6 @@ test-results.xml
 *.sublime-*
 *.code-workspace
 *.swp
+
+# built files
+/lib/

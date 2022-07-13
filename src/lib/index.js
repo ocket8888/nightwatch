@@ -1,11 +1,12 @@
-const {By, Key, Capabilities} = require("selenium-webdriver");
-const Utils = require("./utils");
-const Settings = require("./settings/settings.js");
-const ElementGlobal = require("./api/_loaders/element-global.js");
-const NightwatchClient = require("./core/client.js");
+import  { By, Key, Capabilities } from "selenium-webdriver";
+import * as Utils from "./utils";
+import * as Settings from "./settings/settings.js";
+import * as ElementGlobal from "./api/_loaders/element-global.js";
+import * as NightwatchClient from "./core/client.js";
 const {Logger} = Utils;
 
-const Nightwatch = module.exports = {};
+const Nightwatch = {};
+export = Nightwatch;
 
 /**
  * New programmatic api added in v2

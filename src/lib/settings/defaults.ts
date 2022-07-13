@@ -1,4 +1,4 @@
-const filename_format = function ({testSuite = "", testCase = "", isError = false, dateObject = new Date()} = {}) {
+function filename_format({testSuite = "", testCase = "", isError = false, dateObject = new Date()} = {}) {
 	const fileName = [];
 	const dateParts = dateObject.toString().replace(/:/g, "").split(" ");
 	dateParts.shift();
@@ -14,7 +14,7 @@ const filename_format = function ({testSuite = "", testCase = "", isError = fals
 	return `${fileName.join("/")}${isError ? "_ERROR" : "_FAILED"}_${dateStamp}.png`;
 };
 
-module.exports = {
+export = {
 	// Location(s) where custom commands will be loaded from.
 	custom_commands_path: null,
 
@@ -74,29 +74,29 @@ module.exports = {
 		// Automatically retrying failed assertions - You can tell Nightwatch to automatically retry failed assertions until a given timeout is reached, before the test runner gives up and fails the test.
 		retryAssertionTimeout: 5000,
 
-		reporter: function(results, cb) {cb(results)},
+		reporter: <T = unknown>(results: T, cb: ((arg: T) => void)): void => {cb(results)},
 
-		beforeTestSuite(browser) {
+		beforeTestSuite() {
 			return Promise.resolve();
 		},
 
-		afterTestSuite(browser) {
+		afterTestSuite() {
 			return Promise.resolve();
 		},
 
-		beforeTestCase(browser) {
+		beforeTestCase() {
 			return Promise.resolve();
 		},
 
-		afterTestCase(browser) {
+		afterTestCase() {
 			return Promise.resolve();
 		},
 
-		onBrowserNavigate(browser) {
+		onBrowserNavigate() {
 			return Promise.resolve();
 		},
 
-		onBrowserQuit(browser) {
+		onBrowserQuit() {
 			return Promise.resolve();
 		}
 	},

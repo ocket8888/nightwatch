@@ -1,26 +1,28 @@
-const path = require("path");
-const fs = require("fs");
-const mkpath = require("mkpath");
-const glob = require("glob");
-const lodashMerge = require("lodash.merge");
-const {By} = require("selenium-webdriver");
+import * as path from "path";
+import * as fs from "fs";
+import glob from "glob";
+import lodashMerge from "lodash.merge";
+import { By } from "selenium-webdriver";
 
-const Logger = require("./logger");
-const BrowserName = require("./browsername.js");
-const LocateStrategy = require("./locatestrategy.js");
-const PeriodicPromise = require("./periodic-promise.js");
-const createPromise = require("./createPromise.js");
-const isErrorObject = require("./isErrorObject.js");
-const alwaysDisplayError = require("./alwaysDisplayError.js");
-const Screenshots = require("./screenshots.js");
-const TimedCallback = require("./timed-callback.js");
-const getFreePort = require("./getFreePort.js");
-const requireModule = require("./requireModule.js");
-const getAllClassMethodNames = require("./getAllClassMethodNames.js");
-const printVersionInfo = require("./printVersionInfo.js");
-const {filterStack, filterStackTrace, showStackTrace, stackTraceFilter, errorToStackTrace} = require("./stackTrace.js");
-const beautifyStackTrace = require("./beautifyStackTrace.js");
-const SafeJSON = require("./safeStringify.js");
+import Logger from "./logger";
+import BrowserName from "./browsername";
+import LocateStrategy from "./locatestrategy";
+import PeriodicPromise from "./periodic-promise";
+import createPromise from "./createPromise";
+import isErrorObject from "./isErrorObject";
+import alwaysDisplayError from "./alwaysDisplayError";
+import Screenshots from "./screenshots";
+import TimedCallback from "./timed-callback";
+import getFreePort from "./getFreePort";
+import requireModule from "./requireModule";
+import getAllClassMethodNames from "./getAllClassMethodNames";
+import printVersionInfo from "./printVersionInfo";
+import StackTrace from "./stackTrace";
+import beautifyStackTrace from "./beautifyStackTrace";
+import SafeJSON from "./safeStringify";
+
+const {filterStack, filterStackTrace, showStackTrace, stackTraceFilter, errorToStackTrace} = StackTrace;
+
 const formatRegExp = /%[sdj%]/g;
 const testSuiteNameRegxp = /(_|-|\.)*([A-Z]*)/g;
 const nameSeparatorRegxp = /(\s|\/)/;
@@ -34,48 +36,59 @@ const PrimitiveTypes = {
 	UNDEFINED: "undefined"
 };
 
+interface SelectorObjectDefinition {
+	selector: string;
+	webElementLocator?: unknown;
+}
+
+interface GlobalSelectorObjectDefinition extends SelectorObjectDefinition {
+	webElementLocator: By;
+}
+
+type SelectorDefinition = string | SelectorObjectDefinition;
+
 class Utils {
-	static get tsFileExt() {
+	public static get tsFileExt() {
 		return ".ts";
 	}
 
-	static get jsFileExt() {
+	public static get jsFileExt() {
 		return ".js";
 	}
 
-	static isObject(obj) {
+	public static isObject(obj: unknown): obj is object {
 		return obj !== null && typeof obj == "object";
 	}
 
-	static isFunction(fn) {
+	public static isFunction(fn: unknown): fn is Function {
 		return typeof fn == PrimitiveTypes.FUNCTION;
 	}
 
-	static isBoolean(value) {
+	public static isBoolean(value: unknown): value is boolean {
 		return typeof value == PrimitiveTypes.BOOLEAN;
 	}
 
-	static isNumber(value) {
+	public static isNumber(value: unknown): value is number {
 		return typeof value == PrimitiveTypes.NUMBER;
 	}
 
-	static isString(value) {
+	public static isString(value: unknown): value is string {
 		return typeof value == PrimitiveTypes.STRING;
 	}
 
-	static isUndefined(value) {
+	public static isUndefined(value: unknown): value is undefined {
 		return typeof value == PrimitiveTypes.UNDEFINED;
 	}
 
-	static isDefined(value) {
+	public static isDefined<T>(value: T | undefined): value is T {
 		return !Utils.isUndefined(value);
 	}
 
-	static isES6AsyncFn(fn) {
+	public static isES6AsyncFn<T = unknown>(fn: unknown): fn is () => Promise<T> {
 		return Utils.isFunction(fn) && fn.constructor.name === "AsyncFunction";
 	}
 
-	static enforceType(value, type) {
+	public static enforceType(value: unknown, type: string): void {
 		type = type.toLowerCase();
 
 		switch (type) {
@@ -83,7 +96,7 @@ class Utils {
 		case PrimitiveTypes.BOOLEAN:
 		case PrimitiveTypes.NUMBER:
 		case PrimitiveTypes.FUNCTION:
-			if (typeof value != type) {
+			if (typeof value !== type) {
 				throw new Error(`Invalid type ${typeof value} for value "${value}". Expecting "${type}" instead.`);
 			}
 
@@ -93,7 +106,7 @@ class Utils {
 		throw new Error(`Invalid type ${type} for ${value}`);
 	}
 
-	static convertBoolean(value) {
+	public static convertBoolean(value: unknown): boolean {
 		if (Utils.isString(value) && (!value || value === "false" || value === "0")) {
 			return false;
 		}
@@ -101,7 +114,7 @@ class Utils {
 		return Boolean(value);
 	}
 
-	static get symbols() {
+	public static get symbols() {
 		let ok = String.fromCharCode(10004);
 		let fail = String.fromCharCode(10006);
 
@@ -120,13 +133,17 @@ class Utils {
    * @param {object|string} definition
    * @return {object}
    */
-	static convertToElementSelector(definition) {
+	public static convertToElementSelector(definition?: undefined): undefined;
+	public static convertToElementSelector(definition: null): null;
+	public static convertToElementSelector(definition: SelectorDefinition): SelectorObjectDefinition;
+	public static convertToElementSelector(definition?: SelectorDefinition | null | undefined): SelectorObjectDefinition | null | undefined;
+	public static convertToElementSelector(definition?: SelectorDefinition | null | undefined): SelectorObjectDefinition | null | undefined {
 		const selector = Utils.isString(definition) ? {selector: definition} : definition;
 
 		return selector;
 	}
 
-	static isElementGlobal(selector) {
+	public static isElementGlobal(selector: {webElementLocator?: unknown}): selector is {webElementLocator: By} {
 		return selector.webElementLocator instanceof By;
 	}
 
@@ -135,25 +152,40 @@ class Utils {
    * @param {object} [props]
    * @return {object}
    */
-	static setElementSelectorProps(definition, props = {}) {
+	public static setElementSelectorProps<T extends {}>(definition?: undefined, props?: T | null | undefined): undefined;
+	public static setElementSelectorProps<T extends {}>(definition: null, props?: T | null | undefined): null;
+	public static setElementSelectorProps<T extends {}>(definition: GlobalSelectorObjectDefinition, props?: T | null | undefined): GlobalSelectorObjectDefinition;
+	public static setElementSelectorProps<T extends {}>(definition: SelectorDefinition, props?: null | undefined): SelectorDefinition;
+	public static setElementSelectorProps<T extends {}>(definition: SelectorDefinition, props: T): SelectorDefinition & T;
+	public static setElementSelectorProps<T extends {}>(definition?: SelectorDefinition | null | undefined, props?: T | null | undefined): GlobalSelectorObjectDefinition | SelectorObjectDefinition | (SelectorObjectDefinition & T) | null | undefined {
 		const selector = Utils.convertToElementSelector(definition);
 		if (!selector || Utils.isElementGlobal(selector)) {
 			return selector;
 		}
 
-		Object.keys(props).forEach(function(key) {
-			selector[key] = props[key];
-		});
+		if (props === null || props === undefined) {
+			return selector;
+		}
 
-		return selector;
+		return Object.assign(selector, props);
+
+		// Object.keys(props).forEach(function(key) {
+		// 	selector[key] = props[key];
+		// });
+
+		// return selector;
 	}
 
-	static formatElapsedTime(timeMs, includeMs = false) {
+	public static formatElapsedTime(timeMs: number, includeMs = false): string {
 		const seconds = timeMs/1000;
 
-		return (seconds < 1 && timeMs + "ms") ||
-      (seconds > 1 && seconds < 60 && (seconds + "s")) ||
-      (Math.floor(seconds/60) + "m" + " " + Math.floor(seconds%60) + "s" + (includeMs ? (" / " + timeMs + "ms") : ""));
+		if (seconds < 1) {
+			return `${timeMs}ms`;
+		}
+		if (seconds > 1 && seconds < 60) {
+			return `${seconds}s`;
+		}
+		return `${Math.floor(seconds/60)}m ${Math.floor(seconds%60)}s${includeMs ? ` / ${timeMs}ms` : ""}`;
 	}
 
 	/**
@@ -166,20 +198,19 @@ class Utils {
    * @param {function} fn
    * @param {object} [context]
    */
-	static makeFnAsync(asyncArgCount, fn, context) {
+	public static makeFnAsync<T, U extends Function>(asyncArgCount: number, fn: U, context: T | null): U | ((done: () => void, ...args: unknown[]) => void) {
 		if (fn.length === asyncArgCount) {
 			return fn;
 		}
 
-		return function(...args) {
-			const done = args.pop();
+		return function(done: () => void, ...args: unknown[]) {
 			context = context || null;
 			fn.apply(context, args);
 			done();
 		};
 	}
 
-	static makePromise(handler, context, args) {
+	public static async makePromise<T extends Function>(handler: T, context: unknown, args: ArrayLike<unknown>): Promise<unknown> {
 		const result = Reflect.apply(handler, context, args);
 		if (result instanceof Promise) {
 			return result;
@@ -188,14 +219,19 @@ class Utils {
 		return Promise.resolve(result);
 	}
 
-	static checkFunction(name, parent) {
-		return parent && (typeof parent[name] == "function") && parent[name] || false;
+	public static checkFunction<T extends PropertyKey>(name: T, parent?: Record<T, Function | unknown> | null | undefined): Function | false {
+		if (!parent) {
+			return false;
+		}
+		const prop = parent[name];
+		if (typeof(prop) === "function") {
+			return prop;
+		}
+		return false;
 	}
 
-	static getTestSuiteName(moduleName) {
-		let words;
-
-		moduleName = moduleName.replace(testSuiteNameRegxp, function(match, $0, $1, offset, string) {
+	public static getTestSuiteName(moduleName: string): string {
+		moduleName = moduleName.replace(testSuiteNameRegxp, (match, _, $1, offset, string) => {
 			if (!match) {
 				return "";
 			}
@@ -203,7 +239,7 @@ class Utils {
 			return (offset > 0 && (string.charAt(offset-1) !== " ") ? " ":"") + $1;
 		});
 
-		words = moduleName.split(nameSeparatorRegxp).map(function(word, index, matches) {
+		const words = moduleName.split(nameSeparatorRegxp).map(word => {
 			if (word === "/") {
 				return "/";
 			}
@@ -221,7 +257,7 @@ class Utils {
    * @param f
    * @returns {string}
    */
-	static format(message, selector, timeMS) {
+	public static format(message: unknown, selector: unknown, timeMS: unknown): string {
 		return String(message).replace(formatRegExp, function(exp) {
 			if (exp === "%%") {
 				return "%";
@@ -232,7 +268,7 @@ class Utils {
 				return String(selector);
 
 			case "%d":
-				return Number(timeMS);
+				return Number(timeMS).toString();
 
 			default:
 				return exp;
@@ -240,19 +276,19 @@ class Utils {
 		});
 	}
 
-	static getModuleKey(filePath, srcFolders, fullPaths) {
+	public static getModuleKey(filePath: string, srcFolders: Array<string>, fullPaths: {length: number}): string {
 		const modulePathParts = filePath.split(path.sep);
 		let diffInFolder = "";
 		let folder = "";
 		let parentFolder = "";
-		const moduleName = modulePathParts.pop();
+		const moduleName = modulePathParts.pop() as string;
 		filePath = modulePathParts.join(path.sep);
 
 		if (srcFolders) {
 			for (let i = 0; i < srcFolders.length; i++) {
 				folder = path.resolve(srcFolders[i]);
 				if (fullPaths.length > 1) {
-					parentFolder = folder.split(path.sep).pop();
+					parentFolder = folder.split(path.sep).pop() as string;
 				}
 				if (filePath.indexOf(folder) === 0) {
 					diffInFolder = filePath.substring(folder.length + 1);
@@ -264,10 +300,10 @@ class Utils {
 		return path.join(parentFolder, diffInFolder, moduleName);
 	}
 
-	static getOriginalStackTrace(commandFn) {
+	public static getOriginalStackTrace(commandFn: Function | {stackTrace: string}) {
 		let originalStackTrace;
 
-		if (commandFn.stackTrace) {
+		if (((x: Function | {stackTrace: string}): x is {stackTrace: string} => Object.prototype.hasOwnProperty.call(x, "stackTrace"))(commandFn)) {
 			originalStackTrace = commandFn.stackTrace;
 		} else {
 			const err = new Error;
@@ -279,7 +315,7 @@ class Utils {
 	}
 
 	// util to replace deprecated fs.existsSync
-	static dirExistsSync(path) {
+	public static dirExistsSync(path: fs.PathLike): boolean {
 		try {
 			return fs.statSync(path).isDirectory(); // eslint-disable-next-line no-empty
 		} catch (e) {}
@@ -287,7 +323,7 @@ class Utils {
 		return false;
 	}
 
-	static fileExistsSync(path) {
+	public static fileExistsSync(path: fs.PathLike): boolean {
 		try {
 			return fs.statSync(path).isFile(); // eslint-disable-next-line no-empty
 		} catch (e) {}
@@ -295,21 +331,23 @@ class Utils {
 		return false;
 	}
 
-	static fileExists(path) {
-		return Utils.checkPath(path)
-			.then(function(stats) {
-				return stats.isFile();
-			})
-			.catch(function(err) {
+	public static async fileExists(path: string): Promise<boolean> {
+		try {
+			const stats = await Utils.checkPath(path);
+			if (!stats) {
 				return false;
-			});
+			}
+			return stats.isFile();
+		} catch {
+			return false;
+		}
 	}
 
-	static isTsFile(fileName){
+	public static isTsFile(fileName: string): boolean {
 		return (path.extname(fileName) === Utils.tsFileExt);
 	}
 
-	static isFileNameValid(fileName) {
+	public static isFileNameValid(fileName: string): boolean {
 		return [
 			Utils.jsFileExt,
 			".mjs",
@@ -318,19 +356,23 @@ class Utils {
 		].includes(path.extname(fileName));
 	}
 
-	static checkPath(source, originalErr = null, followSymlinks = true) {
+	public static async checkPath(source: string, originalErr = null, followSymlinks = true): Promise<fs.Stats | void>  {
 		return new Promise(function(resolve, reject) {
 			if (glob.hasMagic(source)) {
 				return resolve();
 			}
 
-			fs[followSymlinks ? "stat" : "lstat"](source, function(err, stats) {
+			const handler = (err: NodeJS.ErrnoException | null, stats: fs.Stats) => {
 				if (err) {
 					return reject(err.code === "ENOENT" && originalErr || err);
 				}
-
 				resolve(stats);
-			});
+			};
+			if (followSymlinks) {
+				fs.stat(source, handler);
+			} else {
+				fs.lstat(source, handler);
+			}
 		});
 	}
 
@@ -338,17 +380,21 @@ class Utils {
    * @param {string} source
    * @return {Promise}
    */
-	static isFolder(source) {
-		return Utils.checkPath(source, null, false).then(stats => stats.isDirectory());
+	public static async isFolder(source: string): Promise<boolean> {
+		const stats = await Utils.checkPath(source, null, false);
+		if (!stats) {
+			return false;
+		}
+		return stats.isDirectory();
 	}
 
 	/**
    * @param {string} source
    * @return {Promise}
    */
-	static readDir(source) {
+	public static readDir(source: string): Promise<Array<string>> {
 		return new Promise(function(resolve, reject) {
-			const callback = function(err, list) {
+			const callback = (err: NodeJS.ErrnoException | null, list: Array<string>) => {
 				if (err) {
 					return reject(err);
 				}
@@ -366,8 +412,8 @@ class Utils {
    * @param {function} loadFn
    * @param {function} readSyncFn
    */
-	static readFolderRecursively(sourcePath, namespace = [], loadFn, readSyncFn) {
-		let resources;
+	public static readFolderRecursively(sourcePath: string, namespace: Array<string> = [], loadFn: (sourcePath: string, resource: string, namespace: Array<string>) => void, readSyncFn?: (path: string) => {sourcePath: string; resources: Array<string>}) {
+		let resources: Array<string>;
 		if (glob.hasMagic(sourcePath)) {
 			resources = glob.sync(sourcePath);
 		} else if (Utils.isFunction(readSyncFn)) {
@@ -399,13 +445,13 @@ class Utils {
 		});
 	}
 
-	static getPluginPath(pluginName) {
+	public static getPluginPath(pluginName: string): string {
 		return path.resolve(require.resolve(pluginName, {
 			paths: [process.cwd()]
 		}));
 	}
 
-	static singleSourceFile(argv = {}) {
+	public static singleSourceFile(argv: {test?: undefined | string; _source?: undefined | Array<string>} = {test: undefined, _source: undefined}): boolean {
 		const {test, _source} = argv;
 
 		if (Utils.isString(test)) {
@@ -415,37 +461,40 @@ class Utils {
 		return Array.isArray(_source) && _source.length === 1 && Utils.fileExistsSync(_source[0]);
 	}
 
-	static getConfigFolder(argv) {
+	public static getConfigFolder(argv?: {config?: string}): string {
 		if (!argv || !argv.config) {
 			return "";
 		}
 
+		[[[]]].flat(Infinity);
 		return path.dirname(argv.config);
 	}
 
 	/**
+   *
+   * @deprecated Maintaining this is a pointless annoyance; use Array.prototype.flat and/or Array.prototype.filter instead.
    *
    * @param {Array} arr
    * @param {number} maxDepth
    * @param {Boolean} includeEmpty
    * @returns {Array}
    */
-	static flattenArrayDeep(arr, maxDepth = 4, includeEmpty = false) {
+	public static flattenArrayDeep<T extends unknown[]>(arr: Array<T>, maxDepth = 4, includeEmpty = false): FlatArray<T, typeof Infinity> {
 		if (!Array.isArray(arr)) {
 			throw new Error(`Utils.flattenArrayDeep excepts an array to be passed. Received: "${arr === null ? arr : typeof arr}".`);
 		}
 
-		return (function flatten(currentArray, currentDepth, initialValue = []) {
+		return (function flatten(currentArray: Array<T>, currentDepth, initialValue: Array<T> = []): FlatArray<T, typeof Infinity> {
 			currentDepth = currentDepth + 1;
 
-			return currentArray.reduce(function(prev, value) {
+			return currentArray.reduce((prev: T, value: T): T => {
 				if (Array.isArray(value)) {
 					const result = prev.concat(value);
 					if (Array.isArray(result) && currentDepth <= maxDepth) {
-						return flatten(result, currentDepth);
+						return flatten(result, currentDepth) as T;
 					}
 
-					return result;
+					return result as T;
 				}
 
 				currentDepth = 0;
@@ -457,7 +506,7 @@ class Utils {
 				prev.push(value);
 
 				return prev;
-			}, initialValue);
+			}, initialValue as T) as FlatArray<T, typeof Infinity>;
 		})(arr, 0);
 	}
 
@@ -468,7 +517,7 @@ class Utils {
    * @param {string} input String to remove invisible chars from
    * @returns {string} Initial input string but without invisible chars
    */
-	static stripControlChars(input) {
+	public static stripControlChars(input: string): string {
 		return input && input.replace(
 			// eslint-disable-next-line no-control-regex
 			/[\x00-\x09\x0B-\x0C\x0E-\x1F\x7F-\x9F]/g,
@@ -476,11 +525,11 @@ class Utils {
 		);
 	}
 
-	static relativeUrl(url) {
+	public static relativeUrl(url: string): boolean {
 		return !(url.includes("://"));
 	}
 
-	static uriJoin(baseUrl, uriPath) {
+	public static uriJoin(baseUrl: string, uriPath: string): string {
 		let result = baseUrl;
 
 		if (baseUrl.endsWith("/")) {
@@ -494,7 +543,7 @@ class Utils {
 		return result + uriPath;
 	}
 
-	static replaceParams(url, params = {}) {
+	public static replaceParams(url: string, params: Record<string, string> = {}): string {
 		return Object.keys(params).reduce(function(prev, param) {
 			prev = prev.replace(`:${param}`, params[param]);
 
@@ -502,9 +551,9 @@ class Utils {
 		}, url);
 	}
 
-	static createFolder(dirPath) {
+	public static async createFolder(dirPath: fs.PathLike): Promise<void> {
 		return new Promise((resolve, reject) => {
-			mkpath(dirPath, function(err) {
+			fs.mkdir(dirPath, {recursive: true}, function(err) {
 				if (err) {
 					return reject(err);
 				}
@@ -514,7 +563,7 @@ class Utils {
 		});
 	}
 
-	static containsMultiple(arrayOrString, valueToFind, separator = ",") {
+	public static containsMultiple(arrayOrString: string | Array<string>, valueToFind: string | Array<string>, separator = ",") {
 		if (typeof valueToFind == "string") {
 			valueToFind = valueToFind.split(separator);
 		}
@@ -530,7 +579,7 @@ class Utils {
 		return arrayOrString.includes(valueToFind);
 	}
 
-	static shouldReplaceStack(err) {
+	public static shouldReplaceStack(err: unknown): boolean {
 		return !alwaysDisplayError(err);
 	}
 }
@@ -563,4 +612,4 @@ lodashMerge(Utils, {
 	beautifyStackTrace
 });
 
-module.exports = Utils;
+export = Utils;

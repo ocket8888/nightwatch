@@ -1,12 +1,14 @@
+import type { CreatedPromise } from "./created.promise.d";
+
 /**
  * @return {{resolve, reject, promise}}
  */
-module.exports = function createPromise() {
-	const deferred = {
+ function createPromise<T = unknown>(): CreatedPromise<T> {
+	const deferred: CreatedPromise<T> = {
 		resolve: null,
 		reject: null,
 		promise: null
-	};
+	} as unknown as CreatedPromise<T>;
 
 	deferred.promise = new Promise((resolve, reject) => {
 		deferred.resolve = resolve;
@@ -14,4 +16,6 @@ module.exports = function createPromise() {
 	});
 
 	return deferred;
-};
+}
+
+export = createPromise;

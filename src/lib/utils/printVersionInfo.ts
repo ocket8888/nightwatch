@@ -1,4 +1,4 @@
-module.exports = function() {
+function printVersionInfo(): void {
 	const packageConfig = require(__dirname + "/../../package.json");
 
 	// eslint-disable-next-line no-console
@@ -8,3 +8,5 @@ module.exports = function() {
 	// eslint-disable-next-line no-console
 	console.log("    changelog: https://github.com/nightwatchjs/nightwatch/releases/tag/v" + packageConfig.version + "\n");
 };
+
+export = printVersionInfo;
